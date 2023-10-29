@@ -24,6 +24,13 @@ An alternative is [http-server](https://www.npmjs.com/package/http-server) but t
 **Q: What's the deal with the [@types/p5](https://www.npmjs.com/package/@types/p5) devDependency?**  
 **A:** By linking to *`@types/p5/global.d.ts`* from the *`jsconfig.json`* it is possible to use autocompletion and view the documentation in Visual Studio Code.
 
+## Resources
+
+- <https://p5js.org>
+- <https://www.npmjs.com/package/p5>
+- <https://github.com/processing/p5.js/wiki/Positioning-your-canvas>
+- [The issue where I got the solution for autocompletion from.](https://github.com/processing/p5.js/issues/1339)
+
 ## License
 
 This project is licensed under the MIT license.
