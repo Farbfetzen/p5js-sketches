@@ -6,10 +6,10 @@ A collection of [p5.js](https://p5js.org/) sketches.
 
 1. Update the dependency versions in *`template/package.json`*.
 1. Copy the template directory and paste it with the name of the sketch.
-1. `cd` into the direcotry of the new sketch.
 1. Change the name in *`package.json`* to match the sketch.
 1. Change the title in *`index.html`* to match the sketch.
 1. Add or remove scripts from the *`index.html`*.
+1. `cd` into the directory of the new sketch.
 1. Run `npm install`.
 1. Maybe create a *`README.md`* with info about the sketch.
 
