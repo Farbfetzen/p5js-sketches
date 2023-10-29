@@ -1,0 +1,9 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "markdownlint.config": {
+        "default": true,
+        "MD024": false
+    },
+    "prettier.requireConfig": true
+}

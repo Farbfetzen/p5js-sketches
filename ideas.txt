@@ -1,0 +1,2 @@
+- A favicon for this project. Put it in the root and reference it from every sketch. This will also get rid of the 404 error.
+- Some noise art.

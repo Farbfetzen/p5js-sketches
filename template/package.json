@@ -1,0 +1,13 @@
+{
+    "name": "p5js-sketch-template",
+    "version": "1.0.0",
+    "author": "Sebastian Henz",
+    "license": "MIT",
+    "private": "true",
+    "dependencies": {
+        "p5": "1.8.0"
+    },
+    "devDependencies": {
+        "@types/p5": "1.7.1"
+    }
+}
