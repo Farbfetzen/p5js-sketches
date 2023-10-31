@@ -1,3 +1,5 @@
+const greenOffset = 10_000;
+const blueOffset = greenOffset * 2;
 const increment = 0.01;
 
 function setup() {
@@ -13,10 +15,9 @@ function draw() {
         let xOffset = 0;
         for (let x = 0; x < width; x++) {
             const index = (x + y * width) * 4;
-            const r = noise(xOffset, yOffset) * 255;
-            pixels[index] = r;
-            pixels[index + 1] = r;
-            pixels[index + 2] = r;
+            pixels[index] = noise(xOffset, yOffset) * 255;
+            pixels[index + 1] = noise(xOffset + greenOffset, yOffset + greenOffset) * 255;
+            pixels[index + 2] = noise(xOffset + blueOffset, yOffset + blueOffset) * 255;
             pixels[index + 3] = 255;
             xOffset += increment;
         }
