@@ -1,0 +1,11 @@
+dd {
+    margin-bottom: 1em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dt::before {
+    content: "\2022 ";
+}

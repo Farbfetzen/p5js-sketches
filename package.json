@@ -1,13 +1,17 @@
 {
-    "name": "p5js-collatz-conjecture",
+    "name": "p5js-sketches",
     "version": "1.0.0",
     "author": "Sebastian Henz",
     "license": "MIT",
     "private": "true",
+    "scripts": {
+        "serve": "live-server"
+    },
     "dependencies": {
         "p5": "1.8.0"
     },
     "devDependencies": {
-        "@types/p5": "1.7.1"
+        "@types/p5": "1.7.1",
+        "live-server": "1.2.2"
     }
 }
