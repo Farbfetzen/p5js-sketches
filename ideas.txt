@@ -1,3 +1,3 @@
 - A favicon for this project. Put it in the root and reference it from every sketch. This will also get rid of the 404 error.
-- Coding Challenge #24: Perlin Noise Flow Field: https://www.youtube.com/watch?v=BjoM9oKOAKY&list=PLRqwX-V7Uu6bgPNQAdxQZpJuJCjeOr7VD&index=6
+- Video about instance mode: https://www.youtube.com/watch?v=Su792jEauZg
 - Make a screenshot from every sketch to show in their readmes.
