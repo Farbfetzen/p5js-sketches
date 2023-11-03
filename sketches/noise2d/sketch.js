@@ -1,4 +1,4 @@
-const greenOffset = 10_000;
+const greenOffset = 10;
 const blueOffset = greenOffset * 2;
 const increment = 0.01;
 
