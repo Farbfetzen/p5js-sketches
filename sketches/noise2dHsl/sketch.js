@@ -14,7 +14,7 @@ function draw() {
         let xOffset = 0;
         for (let x = 0; x < width; x++) {
             const hue = (noise(xOffset, yOffset) * 2) % 1;
-            const c = color(hue, 1, 0.5);
+            const c = color(hue, 0.8, 0.5);
             const index = (x + y * width) * 4;
             pixels[index] = red(c);
             pixels[index + 1] = green(c);
