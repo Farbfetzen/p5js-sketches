@@ -12,7 +12,7 @@ function setup() {
     strokeWeight(2);
     strokeCap(SQUARE);
     colorMode(HSL, TWO_PI, 1, 1, 1);
-    background(220);
+    background(0.1);
     for (let i = 0; i < 5000; i++) {
         particles[i] = new Particle();
     }
