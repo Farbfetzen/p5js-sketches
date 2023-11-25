@@ -1,6 +1,6 @@
 const xyOffsetPerPixel = 0.01;
 let zOffset = 0;
-const zIncrementPerframe = 0.01;
+const zIncrementPerFrame = 0.01;
 const particles = [];
 const wrapAroundEdges = false;
 // Multiply the noise by noiseWidth to widen it and thus the angles.
@@ -19,7 +19,7 @@ function setup() {
 }
 
 function draw() {
-    zOffset += zIncrementPerframe;
+    zOffset += zIncrementPerFrame;
     for (const particle of particles) {
         particle.update();
         particle.show();
