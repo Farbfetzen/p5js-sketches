@@ -1,0 +1,8 @@
+# Ideas
+- A favicon for this project. Put it in the root and reference it from every sketch. This will also get rid of the 404 error.
+- Video about instance mode: https://www.youtube.com/watch?v=Su792jEauZg
+- Make a screenshot from every sketch to show in their readmes.
+
+
+# Notes
+- saveGif() seems buggy. Maybe it happens when the background is only drawn in setup() and not in draw(). If it does not render correctly try moving the function call around. Either above or below background(). Or before/after createCanvas(). I haven't found a reliable pattern yet.

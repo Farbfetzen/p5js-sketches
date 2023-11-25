@@ -1,3 +1,0 @@
-- A favicon for this project. Put it in the root and reference it from every sketch. This will also get rid of the 404 error.
-- Video about instance mode: https://www.youtube.com/watch?v=Su792jEauZg
-- Make a screenshot from every sketch to show in their readmes.
