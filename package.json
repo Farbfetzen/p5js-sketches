@@ -11,7 +11,7 @@
         "p5": "1.8.0"
     },
     "devDependencies": {
-        "@types/p5": "1.7.1",
+        "@types/p5": "1.7.4",
         "live-server": "1.2.2"
     }
 }
