@@ -1,8 +1,13 @@
 # Ideas
+
 - A favicon for this project. Put it in the root and reference it from every sketch. This will also get rid of the 404 error.
 - Video about instance mode: https://www.youtube.com/watch?v=Su792jEauZg
 - Make a screenshot from every sketch to show in their readmes.
 
 
 # Notes
+
 - saveGif() seems buggy. Maybe it happens when the background is only drawn in setup() and not in draw(). If it does not render correctly try moving the function call around. Either above or below background(). Or before/after createCanvas(). I haven't found a reliable pattern yet.
+- Converting gifs to videos: `ffmpeg -i input.gif -movflags faststart -pix_fmt yuv420p output.mp4`
+See https://unix.stackexchange.com/a/294892. If the gif has dimensions that are divisible by 2 then the `-vf "scale=trunc(iw/2)*2:trunc(ih/2)*2"` should not be necessary.
+Alternatively, there are many websites that can convert files for free.
