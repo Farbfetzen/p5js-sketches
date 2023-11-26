@@ -8,6 +8,7 @@
         "serve": "live-server"
     },
     "dependencies": {
+        "mathjs": "12.1.0",
         "p5": "1.8.0"
     },
     "devDependencies": {
