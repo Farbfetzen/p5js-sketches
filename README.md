@@ -7,7 +7,7 @@ A collection of [p5.js](https://p5js.org/) sketches.
 1. Copy the *`sketches/template`* directory and paste it with the name of the new sketch.
 1. Change the title in the new *`index.html`* to match the sketch.
 1. Add or remove scripts from the new *`index.html`*.
-1. Create a *`README.md`* with info about the sketch.
+1. Fill the *`README.md`* with info about the sketch.
 1. Add a link and a description to the list in the root *`index.html`*.
 
 ## Running a sketch
