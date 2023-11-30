@@ -5,19 +5,9 @@ body {
 
 body {
     background-color: #202020;
-
-    /* Center the sketch vertically and horizontally. */
+    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: safe center;
     align-items: safe center;
-}
-
-canvas {
-    display: block;
-    margin: auto;
-}
-
-p {
-    color: grey;
 }

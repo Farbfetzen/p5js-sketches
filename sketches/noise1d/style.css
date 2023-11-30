@@ -5,14 +5,8 @@ body {
 
 body {
     background-color: #202020;
-
-    /* Center the sketch vertically and horizontally. */
+    margin: 0;
     display: flex;
     justify-content: safe center;
     align-items: safe center;
-}
-
-canvas {
-    display: block;
-    margin: auto;
 }
