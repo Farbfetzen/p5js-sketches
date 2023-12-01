@@ -152,6 +152,9 @@ function draw() {
     background(backgroundColor);
 
     const previousAngle = currentAngle;
+    // When saving a gif: Replace the following line with this:
+    // currentAngle += TWO_PI / frames
+    // With "frames" being the number of frames the gif is recording. More frames means slower animation.
     currentAngle += angularVelocity * dt;
     const previousPoint = points[points.length - 1];
     const currentPoint = getEpicyclesAtAngle(currentAngle, showCircles);
@@ -226,7 +229,6 @@ function getEpicyclesAtAngle(angle, showCircles) {
         if (showCircles && s.amplitude >= 1) {
             stroke(128);
             ellipse(previousx, previousY, s.amplitude + s.amplitude);
-            stroke(255);
             line(previousx, previousY, x, y);
         }
     }
