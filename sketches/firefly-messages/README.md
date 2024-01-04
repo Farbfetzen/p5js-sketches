@@ -1,4 +1,4 @@
 # Firefly Messages
 
 Particles forming words.
-Inspired by the helpful messages in the game Abe's Oddysee.
+Inspired by the helpful messages in the game "Oddworld: Abe's Oddysee".
