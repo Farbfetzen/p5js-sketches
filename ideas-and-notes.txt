@@ -14,3 +14,10 @@ See https://unix.stackexchange.com/a/294892. If the gif has sidelengths that are
 Alternatively, there are many websites that can convert files for free.
 - Creating an animation with saveGif() and deltaTime is buggy. The timing is off, no matter how hard I try to control the frame timing. Seems that I have to set a fixed stepSize between each frame when creating a Gif. I can control the speed of the animation with the stepSize. When printing deltaTime to the console during gif recording it shows all zeros.
 - For animations it is sometimes worth it to increase the canvas size to at least 900 and also increase the strokeWeight to make everything more visible.
+
+
+# Instagram
+
+- Images should have a sidelength of 1080 pixels, not bigger.
+- Videos should have a sidelength of 1080 and have an aspect ration between 16:9 and 9:16. They can be cropped in the upload dialog.
+- Hashtags: #p5js, #creativecoding, #creativecodingart. If it is also generative, then add #generativeart. Generative means that the most important features of the artwork are not determined by a human. Examples: noise2d, perlin-noise-flow-field. Examples for sketches which don't fit this category: epicycles, firefly-messages.
