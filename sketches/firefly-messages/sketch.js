@@ -25,7 +25,7 @@ let randomMode = true;
 let targetsPerWord = [];
 let wordIndex = 0;
 let frameCounter = 0;
-let currentDuration = initialDelay;
+let frameCountForNextStep = initialDelay;
 
 class Particle {
     position = createVector(random(width), random(height));
@@ -89,10 +89,10 @@ function setup() {
 }
 
 function draw() {
-    if (++frameCounter >= currentDuration) {
+    if (frameCount === frameCountForNextStep) {
         step();
-        frameCounter = 0;
     }
+
     if (recordGif && frameCount == recordingDelay) {
         saveGif("firefly-messages", recordingFrameCount, { units: "frames" });
     }
@@ -120,9 +120,9 @@ function step() {
         }
         if (wordIndex >= targetsPerWord.length) {
             wordIndex = 0;
-            currentDuration = initialDelay;
+            frameCountForNextStep += initialDelay;
         } else {
-            currentDuration = spaceDuration;
+            frameCountForNextStep += spaceDuration;
         }
     } else {
         for (let i = 0; i < numberOfFlies; i++) {
@@ -130,7 +130,7 @@ function step() {
             fireflies[i].target.set(target.x, target.y);
         }
         wordIndex++;
-        currentDuration = wordDuration;
+        frameCountForNextStep += wordDuration;
     }
 }
 
