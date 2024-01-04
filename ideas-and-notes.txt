@@ -20,4 +20,5 @@ Alternatively, there are many websites that can convert files for free.
 
 - Images should have a sidelength of 1080 pixels, not bigger.
 - Videos should have a sidelength of 1080 and have an aspect ration between 16:9 and 9:16. They can be cropped in the upload dialog.
+- Thumbnails for reels need to have the aspect ratio 9:16. On the profile page only the center square part of that is shown. For videos that are not 1:1 it's a good idea to take a screenshot and crop it to the necessary aspect ratio.
 - Hashtags: #p5js, #creativecoding, #creativecodingart. If it is also generative, then add #generativeart. Generative means that the most important features of the artwork are not determined by a human. Examples: noise2d, perlin-noise-flow-field. Examples for sketches which don't fit this category: epicycles, firefly-messages.
