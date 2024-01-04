@@ -3,12 +3,7 @@
 - A favicon for this project. Put it in the root and reference it from every sketch. This will also get rid of the 404 error.
 - Video about instance mode: https://www.youtube.com/watch?v=Su792jEauZg
 - Make a screenshot from every sketch to show in their readmes.
-- Epicycles
-    - Coding Challenge 125: Fourier Series https://www.youtube.com/watch?v=Mm2eYfj0SgA
-    - Coding Challenge #130.1: Drawing with Fourier Transform and Epicycles https://www.youtube.com/watch?v=MY4luNgGfms
-    - Coding Challenge #130: Fourier Transform User Drawing https://www.youtube.com/watch?v=n9nfTxp_APM
-    - Coding Challenge #130: Fourier Transform Drawing with Complex Number Input https://www.youtube.com/watch?v=7_vKzcgpfvU
-    - Quickdraw dataset: https://www.youtube.com/watch?v=yLuk0twx8Hc
+- GUI with sliders, buttons and textfields. For example with firefly-messages: message, number of flies, delays, start recording, etc.
 
 
 # Notes
