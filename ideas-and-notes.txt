@@ -4,6 +4,15 @@
 - Video about instance mode: https://www.youtube.com/watch?v=Su792jEauZg
 - Make a screenshot from every sketch to show in their readmes.
 - GUI with sliders, buttons and textfields. For example with firefly-messages: message, number of flies, delays, start recording, etc.
+- Learn OBS to create better videos and without having to work around the shortcomings of saveGif. Also to include recordings from my webcam and microphone.
+- Learn esbuild or webpack to be able to use typescript. This should improve the code quality and allow for better autocompletion and error detection. https://www.youtube.com/watch?v=kXNsQ4gpMKs
+- Create an audio/music visualizer. Like Windows Media Player.
+    - https://therewasaguy.github.io/p5-music-viz/
+    - https://editor.p5js.org/paigem/sketches/KLvXoDZZ_
+    - https://www.youtube.com/watch?v=Pn1g1wjxl_0&list=PLRqwX-V7Uu6aFcVjlDAkkGIixw70s7jpW
+    - https://www.youtube.com/watch?v=uk96O7N1Yo0 (sehr gut)
+    Make sure to gitignore the music files!
+- Learn how to read from the webcam and microphone.
 
 
 # Notes
@@ -14,6 +23,7 @@ See https://unix.stackexchange.com/a/294892. If the gif has sidelengths that are
 Alternatively, there are many websites that can convert files for free.
 - Creating an animation with saveGif() and deltaTime is buggy. The timing is off, no matter how hard I try to control the frame timing. Seems that I have to set a fixed stepSize between each frame when creating a Gif. I can control the speed of the animation with the stepSize. When printing deltaTime to the console during gif recording it shows all zeros.
 - For animations it is sometimes worth it to increase the canvas size to at least 900 and also increase the strokeWeight to make everything more visible.
+- Record a video with a height of 1080 px by setting the browser to fullscreen.
 
 
 # Instagram
