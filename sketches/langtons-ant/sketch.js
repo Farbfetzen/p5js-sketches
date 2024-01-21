@@ -3,22 +3,130 @@
 // rules: index = cell state, value = turn direction
 
 const ruleCollection = {
-    classic: [1, -1],
-    filled_triangle: [1, 1, -1, 1, -1, 1, 1],
-    filled_square: [1, 1, -1, 1, 1],
-    filled_corner: [1, 1, -1, 1, -1, -1],
-    highway_heaven: [-1, -1, -1, 1, 1, 1],
-    highway_square: [-1, 1, 1, 1, 1, 1, -1, -1, 1],
-    triangles: [1, 1, -1, -1, -1, 1, -1, -1, -1, 1, 1, 1],
-    rectangle_symmetry: [1, -1, -1, 1],
-    round_symmetry_1: [-1, -1, 1, 1],
-    round_symmetry_2: [-1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1],
-    chaos: [1, -1, 1],
+    classic: {
+        turns: [1, -1],
+        gridColors: ["white", "black"],
+        antColor: "red",
+    },
+    filled_triangle: {
+        turns: [1, 1, -1, 1, -1, 1, 1],
+        gridColors: ["black", "blue", "green", "darkred", "orange", "olive", "pink"],
+        antColor: "white",
+    },
+
+    filled_square: {
+        turns: [1, 1, -1, 1, 1],
+        gridColors: ["black", "blue", "green", "darkred", "orange"],
+        antColor: "white",
+    },
+    filled_corner: {
+        turns: [1, 1, -1, 1, -1, -1],
+        gridColors: ["black", "darkgreen", "darkred", "blue", "cyan", "olive"],
+        antColor: "white",
+    },
+    highway_heaven: {
+        turns: [-1, -1, -1, 1, 1, 1],
+        gridColors: ["black", "darkgreen", "darkred", "blue", "cyan", "olive"],
+        antColor: "white",
+    },
+
+    highway_square: {
+        turns: [-1, 1, 1, 1, 1, 1, -1, -1, 1],
+        gridColors: ["white", "purple", "darkgreen", "green", "blue", "orange", "olive", "cyan", "pink"],
+        antColor: "red",
+    },
+
+    triangles: {
+        turns: [1, 1, -1, -1, -1, 1, -1, -1, -1, 1, 1, 1],
+        gridColors: [
+            "black",
+            "darkred",
+            "green",
+            "darkgreen",
+            "blue",
+            "orange",
+            "purple",
+            "cyan",
+            "pink",
+            "olive",
+            "turquoise",
+            "yellow",
+        ],
+        antColor: "white",
+    },
+    rectangle_symmetry: {
+        turns: [1, -1, -1, 1],
+        gridColors: ["white", "darkgreen", "darkred", "blue"],
+        antColor: "black",
+    },
+    round_symmetry_1: {
+        turns: [-1, -1, 1, 1],
+        gridColors: ["white", "darkgreen", "darkred", "blue"],
+        antColor: "black",
+    },
+    round_symmetry_2: {
+        turns: [-1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1],
+        gridColors: [
+            "white",
+            "darkred",
+            "green",
+            "darkgreen",
+            "blue",
+            "orange",
+            "purple",
+            "cyan",
+            "pink",
+            "olive",
+            "turquoise",
+            "yellow",
+        ],
+        antColor: "black",
+    },
+    chaos: {
+        turns: [1, -1, 1],
+        gridColors: ["white", "violet", "cornflowerblue"],
+        antColor: "black",
+    },
+    convoluted_highway: {
+        turns: [-1, -1, 1, 1, 1, -1, 1, -1, 1, -1, -1, 1],
+        gridColors: [
+            "black",
+            "darkred",
+            "green",
+            "darkgreen",
+            "blue",
+            "orange",
+            "purple",
+            "cyan",
+            "pink",
+            "olive",
+            "turquoise",
+            "yellow",
+        ],
+        antColor: "white",
+    },
+    more_highways: {
+        turns: [-1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1],
+        gridColors: [
+            "black",
+            "darkred",
+            "green",
+            "darkgreen",
+            "blue",
+            "orange",
+            "purple",
+            "cyan",
+            "pink",
+            "olive",
+            "turquoise",
+            "yellow",
+        ],
+        antColor: "white",
+    },
 };
-const rules = ruleCollection.classic;
-const cellSize = 3;
-const stepsPerFrame = 20;
-const palette = [];
+const rules = ruleCollection.more_highways;
+const cellSize = 2;
+const stepsPerFrame = 100;
 let ant;
 let grid;
 
@@ -46,8 +154,6 @@ class Grid {
 class Ant {
     x = floor(grid.width / 2);
     y = floor(grid.height) / 2;
-    previousX;
-    previousY;
     direction = 0;
     state = 0;
     color = color(0, 0, 0);
@@ -59,25 +165,28 @@ class Ant {
     ];
     newGridState;
 
-    update() {
+    step() {
         const gridIndex = floor(this.x + this.y * grid.width);
         const stateAtCurrentPosition = grid.grid[gridIndex];
-        this.newGridState = (stateAtCurrentPosition + 1) % rules.length;
+        this.newGridState = (stateAtCurrentPosition + 1) % rules.turns.length;
         grid.grid[gridIndex] = this.newGridState;
+        this.drawCell();
         this.move(stateAtCurrentPosition);
+        this.drawAnt();
     }
 
     move(stateAtCurrentPosition) {
-        this.direction = mod(this.direction + rules[stateAtCurrentPosition], 4);
-        this.previousX = this.x;
-        this.previousY = this.y;
+        this.direction = mod(this.direction + rules.turns[stateAtCurrentPosition], 4);
         this.moveMethods[this.direction]();
     }
 
-    draw() {
-        fill(palette[this.newGridState]);
-        square(this.previousX * cellSize, this.previousY * cellSize, cellSize);
-        fill(this.color);
+    drawCell() {
+        fill(rules.gridColors[this.newGridState]);
+        square(this.x * cellSize, this.y * cellSize, cellSize);
+    }
+
+    drawAnt() {
+        fill(rules.antColor);
         square(this.x * cellSize, this.y * cellSize, cellSize);
     }
 }
@@ -86,19 +195,25 @@ function setup() {
     createCanvas(600, 600);
     noStroke();
     colorMode(HSL, 1);
-    const backgroundHue = 2 / 3;
-    for (let i = 0; i < rules.length; i++) {
-        const hue = (i / rules.length + backgroundHue) % 1;
-        palette[i] = color(hue, 1, 0.5);
-    }
-    background(palette[0]);
+    background(rules.gridColors[0]);
     grid = new Grid();
     ant = new Ant();
 }
 
 function draw() {
     for (let i = 0; i < stepsPerFrame; i++) {
-        ant.update();
-        ant.draw();
+        ant.step();
+    }
+}
+
+function keyPressed() {
+    if (key === " ") {
+        if (isLooping()) {
+            noLoop();
+        } else {
+            loop();
+        }
+    } else if (key === "s") {
+        ant.step();
     }
 }
