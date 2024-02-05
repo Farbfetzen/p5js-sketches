@@ -79,7 +79,7 @@ function setup() {
     colorMode(HSL, 360, 100, 100, 100);
     noStroke();
     rectMode(CENTER);
-    const words = message.split(/\s/);
+    const words = message.trim().split(/\s/);
     prepareTargets(words);
     recordingFrameCount = int(initialDelay + wordDuration * words.length + spaceDuration * (words.length - 1));
     recordingDelay = int(initialDelay / 2);
