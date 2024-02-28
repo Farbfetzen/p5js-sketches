@@ -1,2 +1,9 @@
 *.mp3
-node_modules
+
+.vscode/*
+!.vscode/settings.json
+
+/.angular/cache
+/coverage
+/dist
+/node_modules
