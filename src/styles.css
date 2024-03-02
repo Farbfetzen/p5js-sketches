@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* * {
+    outline: 1px dotted red;
+} */
+
+canvas {
+    /*
+        "display: block" removes the small gap below the canvas.
+        Alternatives are "vertical-align: top;" on the canvas
+        or "font-size: 0;" on the element containing the canvas.
+        https://stackoverflow.com/questions/8600393/there-is-a-4px-gap-below-canvas-video-audio-elements-in-html5
+    */
+    display: block;
+}
