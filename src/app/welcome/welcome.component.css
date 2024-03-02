@@ -4,8 +4,8 @@ dd {
 
 dt {
     font-weight: bold;
-}
 
-dt::before {
-    content: "\2022 ";
+    &::before {
+        content: "\2022\20";
+    }
 }
