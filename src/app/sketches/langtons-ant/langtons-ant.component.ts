@@ -1,4 +1,3 @@
-import { floor } from "mathjs";
 import p5 from "p5";
 
 import { Component } from "@angular/core";
@@ -164,12 +163,12 @@ export class LangtonsAntComponent {
             height = p.height / cellSize;
             size = this.width * this.height;
             grid = Array(this.size).fill(0);
-            center = floor(this.width / 2 + (this.height / 2) * this.width);
+            center = p.floor(this.width / 2 + (this.height / 2) * this.width);
         }
 
         class Ant {
-            x = floor(grid.width / 2);
-            y = floor(grid.height) / 2;
+            x = p.floor(grid.width / 2);
+            y = p.floor(grid.height) / 2;
             direction = 0;
             state = 0;
             color = p.color(0, 0, 0);
@@ -182,7 +181,7 @@ export class LangtonsAntComponent {
             newGridState = this.state;
 
             step(): void {
-                const gridIndex = floor(this.x + this.y * grid.width);
+                const gridIndex = p.floor(this.x + this.y * grid.width);
                 const stateAtCurrentPosition = grid.grid[gridIndex];
                 this.newGridState = (stateAtCurrentPosition + 1) % rules.turns.length;
                 grid.grid[gridIndex] = this.newGridState;
