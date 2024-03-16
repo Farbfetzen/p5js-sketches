@@ -1,4 +1,3 @@
-import { random } from "mathjs";
 import p5 from "p5";
 
 import { Component } from "@angular/core";
@@ -33,7 +32,7 @@ export class CollatzConjectureComponent {
 
                 p.resetMatrix();
                 p.translate(p.width / 2, p.height / 2);
-                p.stroke(random(100, 220), random(50, 250), random(180), 20);
+                p.stroke(p.random(100, 220), p.random(50, 250), p.random(180), 20);
                 for (const element of sequence) {
                     if (element % 2 === 0) {
                         p.rotate(angle);
