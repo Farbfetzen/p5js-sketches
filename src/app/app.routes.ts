@@ -3,6 +3,7 @@ import { Routes } from "@angular/router";
 import { CollatzConjectureComponent } from "src/app/sketches/collatz-conjecture/collatz-conjecture.component";
 import { ColorbandsComponent } from "src/app/sketches/colorbands/colorbands.component";
 import { EpicyclesComponent } from "src/app/sketches/epicycles/epicycles.component";
+import { FallingSandComponent } from "src/app/sketches/falling-sand/falling-sand.component";
 import { FireflyMessagesComponent } from "src/app/sketches/firefly-messages/firefly-messages.component";
 import { LangtonsAntComponent } from "src/app/sketches/langtons-ant/langtons-ant.component";
 import { Noise1dComponent } from "src/app/sketches/noise1d/noise1d.component";
@@ -19,6 +20,7 @@ export const routes: Routes = [
             { path: "collatz-conjecture", component: CollatzConjectureComponent },
             { path: "colorbands", component: ColorbandsComponent },
             { path: "epicycles", component: EpicyclesComponent },
+            { path: "falling-sand", component: FallingSandComponent },
             { path: "firefly-messages", component: FireflyMessagesComponent },
             { path: "langtons-ant", component: LangtonsAntComponent },
             { path: "noise1d", component: Noise1dComponent },
