@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 
 @Injectable({
     providedIn: "root",
@@ -12,7 +12,7 @@ export class ToolbarService {
         this._refreshButtonEvent.next(event);
     }
 
-    get refreshButtonEvent$() {
+    get refreshButtonEvent$(): Observable<Event> {
         return this._refreshButtonEvent.asObservable();
     }
 

@@ -22,7 +22,7 @@ References:
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class EpicyclesComponent {
-    createSketch = (p: p5) => {
+    createSketch = (p: p5): void => {
         // TODO: Find out why closed_hilbert loads so slowly and make it faster.
         // TODO: Add a selectbox for selecting a shape.
         // TODO: Add buttons that to the same as the keybindings.
@@ -117,7 +117,7 @@ export class EpicyclesComponent {
          * Algorithm taken from Wikipedia: https://en.wikipedia.org/wiki/Discrete_Fourier_transform
          * X_k = SUM(n=0, N-1)(x_n * e^(-(i * 2 * PI * k * n) / N))
          */
-        function dft() {
+        function dft(): void {
             const x = path.map((p) => math.complex(p.x, p.y));
             const N = path.length;
             const minusI2Pi = math.chain(math.i).multiply(p.TWO_PI).unaryMinus().done();
@@ -138,7 +138,7 @@ export class EpicyclesComponent {
             }
         }
 
-        function setOrigin() {
+        function setOrigin(): void {
             const offset = signal.shift()!;
             epicycleOrigin = p5.Vector.fromAngle(offset.phase, offset.amplitude).add(p.width / 2, p.height / 2);
         }
@@ -147,7 +147,7 @@ export class EpicyclesComponent {
          * Sort by frequency so the frequencies are in the order -1, 1, -2, 2, -3, 3, etc.
          * I feel this results in the most aesthetically pleasing animation.
          */
-        function sortEpicycles() {
+        function sortEpicycles(): void {
             signal.sort((a, b) => {
                 const absA = p.abs(a.frequency);
                 const absB = p.abs(b.frequency);
@@ -203,7 +203,7 @@ export class EpicyclesComponent {
         /**
          * Keep the points and angles arrays short by removing points that are more than TWO_PI radians behind.
          */
-        function trimArrays() {
+        function trimArrays(): void {
             const limit = currentAngle - p.TWO_PI;
             for (let i = 0; i < angles.length; i++) {
                 if (angles[i] > limit) {
@@ -214,11 +214,11 @@ export class EpicyclesComponent {
             }
         }
 
-        p.preload = () => {
+        p.preload = (): void => {
             p.loadStrings(filename, loadPath);
         };
 
-        p.setup = () => {
+        p.setup = (): void => {
             p.createCanvas(canvasWidth, canvasHeight);
             p.noFill();
             maxDeltaTime = (1 / p.getTargetFrameRate()) * 1000 * 2;
@@ -235,7 +235,7 @@ export class EpicyclesComponent {
             angles.push(currentAngle);
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             // Limit dt because deltaTime increases even when isLooping() is false.
             const dt = p.min(p.deltaTime, maxDeltaTime) / 1000;
 
@@ -285,7 +285,7 @@ export class EpicyclesComponent {
             }
         };
 
-        p.keyPressed = () => {
+        p.keyPressed = (): void => {
             if (p.key === " ") {
                 if (p.isLooping()) {
                     p.noLoop();

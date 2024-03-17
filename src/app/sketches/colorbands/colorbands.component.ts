@@ -11,8 +11,8 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class ColorbandsComponent {
-    createSketch = (p: p5) => {
-        p.setup = () => {
+    createSketch = (p: p5): void => {
+        p.setup = (): void => {
             p.createCanvas(400, 400);
             p.pixelDensity(1);
             p.noLoop();
@@ -20,7 +20,7 @@ export class ColorbandsComponent {
             p.noiseSeed(p.random(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER));
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             const increment = 0.005;
             p.loadPixels();
             let yOffset = 0;

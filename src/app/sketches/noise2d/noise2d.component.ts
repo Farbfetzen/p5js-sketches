@@ -11,19 +11,19 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class Noise2dComponent {
-    createSketch = (p: p5) => {
+    createSketch = (p: p5): void => {
         const greenOffset = 10;
         const blueOffset = greenOffset * 2;
         const increment = 0.01;
 
-        p.setup = () => {
+        p.setup = (): void => {
             p.createCanvas(400, 400);
             p.pixelDensity(1);
             p.noLoop();
             p.noiseSeed(p.random(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER));
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             p.loadPixels();
             let yOffset = 0;
             for (let y = 0; y < p.height; y++) {
