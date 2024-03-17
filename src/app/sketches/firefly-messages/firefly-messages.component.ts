@@ -11,7 +11,7 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class FireflyMessagesComponent {
-    createSketch = (p: p5) => {
+    createSketch = (p: p5): void => {
         // Goal: Have particles forming words one after the other.
         // Like the helpful fireflies from Abe's Oddysee.
 
@@ -52,13 +52,13 @@ export class FireflyMessagesComponent {
                 this.randomTarget();
             }
 
-            randomTarget() {
+            randomTarget(): void {
                 this.target = p5.Vector.random2D().setMag(p.random(maxTargetRadius));
                 this.target.x *= targetEllipseFactor;
                 this.target.add(center);
             }
 
-            update() {
+            update(): void {
                 const difference = p5.Vector.sub(this.target, this.position);
                 const distance = difference.mag();
                 // Set the distance cutoff to 1 so the flies keep vibrating a little near their targets.
@@ -75,18 +75,18 @@ export class FireflyMessagesComponent {
                 }
             }
 
-            drawFly() {
+            drawFly(): void {
                 p.fill(this.flyColor);
                 p.circle(this.position.x, this.position.y, flySize);
             }
 
-            drawGlow() {
+            drawGlow(): void {
                 p.fill(this.glowColor);
                 p.circle(this.position.x, this.position.y, glowSize);
             }
         }
 
-        p.setup = () => {
+        p.setup = (): void => {
             p.createCanvas(1080, 608); // 16:9 aspect ratio
             center = p.createVector(p.width / 2, p.height / 2);
             p.colorMode(p.HSL, 360, 100, 100, 100);
@@ -103,7 +103,7 @@ export class FireflyMessagesComponent {
             }
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             if (p.frameCount === frameCountForNextStep) {
                 step();
             }
@@ -127,7 +127,7 @@ export class FireflyMessagesComponent {
             }
         };
 
-        function step() {
+        function step(): void {
             randomMode = !randomMode;
             if (randomMode) {
                 for (const fly of fireflies) {
@@ -149,7 +149,7 @@ export class FireflyMessagesComponent {
             }
         }
 
-        function prepareTargets(words: string[]) {
+        function prepareTargets(words: string[]): void {
             const textColor = p.color(360, 100, 100);
             p.fill(textColor);
             const textColorRedChannel = p.int(p.red(textColor));

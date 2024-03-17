@@ -11,13 +11,13 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class CollatzConjectureComponent {
-    createSketch = (p: p5) => {
-        p.setup = () => {
+    createSketch = (p: p5): void => {
+        p.setup = (): void => {
             p.createCanvas(600, 600);
             p.noLoop();
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             p.background(30, 10, 70);
             const length = 5;
             const angle = 0.23;
@@ -45,7 +45,7 @@ export class CollatzConjectureComponent {
             }
         };
 
-        function collatz(n: number) {
+        function collatz(n: number): number {
             if (n % 2 === 0) {
                 return n / 2;
             }

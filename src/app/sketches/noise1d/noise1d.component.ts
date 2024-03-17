@@ -11,17 +11,17 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class Noise1dComponent {
-    createSketch = (p: p5) => {
+    createSketch = (p: p5): void => {
         const increment = 0.02;
         let start = 0;
 
-        p.setup = () => {
+        p.setup = (): void => {
             p.createCanvas(400, 400);
             p.stroke(0);
             p.noFill();
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             p.background(240);
             let xOffset = start;
             p.beginShape();

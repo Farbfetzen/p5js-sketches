@@ -11,7 +11,7 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class FallingSandComponent {
-    createSketch = (p: p5) => {
+    createSketch = (p: p5): void => {
         const cellSize = 5;
         const creationRadius = 10; // in grid units
         const newGrainsPerFrame = 100;
@@ -22,7 +22,7 @@ export class FallingSandComponent {
             width;
             height;
             size;
-            grid;
+            grid: (number | null)[];
 
             constructor() {
                 this.width = p.width / cellSize;
@@ -31,35 +31,36 @@ export class FallingSandComponent {
                 this.grid = Array(this.size).fill(null);
             }
 
-            xyToIndex(x: number, y: number) {
+            xyToIndex(x: number, y: number): number {
                 return p.floor(x + y * this.width);
             }
 
-            setAt(x: number, y: number, value: number | null) {
+            setAt(x: number, y: number, value: number | null): void {
                 if (this.isInBounds(x, y)) {
                     this.grid[this.xyToIndex(x, y)] = value;
                 }
             }
 
-            getAt(x: number, y: number) {
+            getAt(x: number, y: number): number | null {
                 if (this.isInBounds(x, y)) {
                     return this.grid[this.xyToIndex(x, y)];
                 }
+                return null;
             }
 
-            isInBounds(x: number, y: number) {
+            isInBounds(x: number, y: number): boolean {
                 return x >= 0 && x < this.width && y >= 0 && y < this.height;
             }
         }
 
-        p.setup = () => {
+        p.setup = (): void => {
             p.createCanvas(600, 600);
             p.noStroke();
             p.colorMode(p.HSL, 100);
             grid = new Grid();
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             p.background(0);
 
             if (p.mouseIsPressed) {
@@ -83,7 +84,7 @@ export class FallingSandComponent {
             }
         };
 
-        function createSand() {
+        function createSand(): void {
             for (let i = 0; i < newGrainsPerFrame; i++) {
                 const v = p5.Vector.random2D()
                     .setMag(p.random(creationRadius * cellSize))
@@ -96,11 +97,11 @@ export class FallingSandComponent {
             }
         }
 
-        p.mousePressed = () => {
+        p.mousePressed = (): void => {
             currentHue = p.random(100);
         };
 
-        function getNextParticlePosition(x: number, y: number) {
+        function getNextParticlePosition(x: number, y: number): [number, number] {
             const below = y + 1;
             if (below === grid.height) {
                 return [x, y];

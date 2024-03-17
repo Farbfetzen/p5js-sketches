@@ -12,7 +12,7 @@ import { Particle } from "src/app/sketches/perlin-noise-flow-field/particle";
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class PerlinNoiseFlowFieldComponent {
-    createSketch = (p: p5) => {
+    createSketch = (p: p5): void => {
         const xyOffsetPerPixel = 0.01;
         let zOffset = 0;
         const zIncrementPerFrame = 0.01;
@@ -22,7 +22,7 @@ export class PerlinNoiseFlowFieldComponent {
         // Otherwise, the force mostly points to the right (PI radians).
         const noiseWidth = 4;
 
-        p.setup = () => {
+        p.setup = (): void => {
             p.createCanvas(600, 600);
             p.strokeWeight(2);
             p.strokeCap(p.SQUARE);
@@ -34,7 +34,7 @@ export class PerlinNoiseFlowFieldComponent {
             }
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             zOffset += zIncrementPerFrame;
             for (const particle of particles) {
                 particle.changeDirection(zOffset);

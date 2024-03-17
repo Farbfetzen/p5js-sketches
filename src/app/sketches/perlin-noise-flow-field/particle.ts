@@ -15,7 +15,7 @@ export class Particle {
         private edgeWrap: boolean,
     ) {}
 
-    changeDirection(zOffset: number) {
+    changeDirection(zOffset: number): void {
         const xOffset = (this.position.x * this.xyOffsetPerPixel) / this.noiseWidth;
         const yOffset = (this.position.y * this.xyOffsetPerPixel) / this.noiseWidth;
         const n = this.p.noise(xOffset, yOffset, zOffset);
@@ -25,7 +25,7 @@ export class Particle {
         this.acceleration.add(this.force);
     }
 
-    move() {
+    move(): void {
         this.velocity.add(this.acceleration);
         this.velocity.limit(this.maxVelocity);
         this.previousPosition.set(this.position);
@@ -43,7 +43,7 @@ export class Particle {
      * This method can cause some artefacts at the edges
      * because the noise does not wrap around.
      */
-    wrapAroundEdges() {
+    wrapAroundEdges(): void {
         if (this.position.x > this.p.width) {
             this.position.x -= this.p.width;
             this.previousPosition.x = this.position.x;
@@ -60,7 +60,7 @@ export class Particle {
         }
     }
 
-    show() {
+    show(): void {
         this.p.line(this.previousPosition.x, this.previousPosition.y, this.position.x, this.position.y);
     }
 }

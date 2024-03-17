@@ -11,7 +11,7 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
 })
 export class LangtonsAntComponent {
-    createSketch = (p: p5) => {
+    createSketch = (p: p5): void => {
         // directions: 0 = right, 1 = down, 2 = left, 3 = up
         // turning: -1 = left, 0 = straight, 1 = right, 2 = turn around
         // rules: index = cell state, value = turn direction
@@ -173,10 +173,22 @@ export class LangtonsAntComponent {
             state = 0;
             color = p.color(0, 0, 0);
             moveMethods = [
-                () => (this.x = (this.x + 1) % grid.width), // right
-                () => (this.y = (this.y + 1) % grid.height), // down
-                () => (this.x = mod(this.x - 1, grid.width)), // left
-                () => (this.y = mod(this.y - 1, grid.height)), // up
+                (): void => {
+                    // right
+                    this.x = (this.x + 1) % grid.width;
+                },
+                (): void => {
+                    // down
+                    this.y = (this.y + 1) % grid.height;
+                },
+                (): void => {
+                    // left
+                    this.x = mod(this.x - 1, grid.width);
+                },
+                (): void => {
+                    // up
+                    this.y = mod(this.y - 1, grid.height);
+                },
             ];
             newGridState = this.state;
 
@@ -206,7 +218,7 @@ export class LangtonsAntComponent {
             }
         }
 
-        p.setup = () => {
+        p.setup = (): void => {
             p.createCanvas(600, 600);
             p.noStroke();
             p.colorMode(p.HSL, 1);
@@ -215,13 +227,13 @@ export class LangtonsAntComponent {
             ant = new Ant();
         };
 
-        p.draw = () => {
+        p.draw = (): void => {
             for (let i = 0; i < stepsPerFrame; i++) {
                 ant.step();
             }
         };
 
-        p.keyPressed = () => {
+        p.keyPressed = (): void => {
             if (p.key === " ") {
                 if (p.isLooping()) {
                     p.noLoop();
