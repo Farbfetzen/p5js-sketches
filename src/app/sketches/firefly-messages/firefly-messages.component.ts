@@ -154,6 +154,8 @@ export class FireflyMessagesComponent {
             p.fill(textColor);
             const textColorRedChannel = p.int(p.red(textColor));
             p.textAlign(p.CENTER, p.CENTER);
+            // Set pixelDensity to 1 so the pixels array is the same size regardless of display configuration.
+            p.pixelDensity(1);
             for (const word of words) {
                 let currentTextSize = maxTextSize;
                 p.textSize(currentTextSize);
