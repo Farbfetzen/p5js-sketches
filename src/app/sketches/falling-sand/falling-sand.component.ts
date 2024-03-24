@@ -69,7 +69,10 @@ export class FallingSandComponent {
 
             // Go from the bottom to the top so cells are only updated once per frame as they fall down.
             for (let y = grid.height - 1; y >= 0; y--) {
-                for (let x = 0; x < grid.width; x++) {
+                // Randomize the x coordinates because otherwise the grains slide down differently on the right
+                // and the left side of a pile.
+                const xCoordinates = [...Array(grid.width)].map((_, i) => i).sort(() => Math.random() - 0.5);
+                for (const x of xCoordinates) {
                     const cellHue = grid.getAt(x, y);
                     if (cellHue !== null) {
                         const [newX, newY] = getNextParticlePosition(x, y);
