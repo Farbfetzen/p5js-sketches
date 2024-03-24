@@ -9,6 +9,13 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     standalone: true,
     imports: [SketchComponent],
     template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
+    styles: `
+        app-sketch {
+            /* border should be twice as thick as the sand grains */
+            border: 10px solid dimgrey;
+            border-radius: 10px;
+        }
+    `,
 })
 export class FallingSandComponent {
     createSketch = (p: p5): void => {
