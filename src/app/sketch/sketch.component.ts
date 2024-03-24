@@ -1,6 +1,6 @@
 import p5 from "p5";
 
-import { Component, ElementRef, HostBinding, Input, OnDestroy, OnInit, booleanAttribute } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnDestroy, booleanAttribute } from "@angular/core";
 
 import { ToolbarService } from "src/app/toolbar/toolbar.service";
 
@@ -19,7 +19,7 @@ import { ToolbarService } from "src/app/toolbar/toolbar.service";
         }
     `,
 })
-export class SketchComponent implements OnInit, OnDestroy {
+export class SketchComponent implements AfterViewInit, OnDestroy {
     /** A function that creates a sketch. */
     @Input({ required: true }) sketchFun!: (p: p5) => void;
 
@@ -39,7 +39,7 @@ export class SketchComponent implements OnInit, OnDestroy {
         this.refreshButtonSubscription = toolbarService.refreshButtonEvent$.subscribe(() => this.refresh());
     }
 
-    ngOnInit(): void {
+    ngAfterViewInit(): void {
         this.sketch = new p5(this.sketchFun, this.hostElement.nativeElement);
     }
 
