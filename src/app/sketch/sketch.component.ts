@@ -28,13 +28,12 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
     @HostBinding("class.center-horiz")
     centeredHorizontally = false;
 
-    sketch!: p5;
-
-    refreshButtonSubscription;
+    private sketch!: p5;
+    private refreshButtonSubscription;
 
     constructor(
         private hostElement: ElementRef,
-        private toolbarService: ToolbarService,
+        toolbarService: ToolbarService,
     ) {
         this.refreshButtonSubscription = toolbarService.refreshButtonEvent$.subscribe(() => this.refresh());
     }
