@@ -8,6 +8,7 @@ import { ToolbarService } from "src/app/toolbar/toolbar.service";
     standalone: true,
     imports: [RouterLink],
     templateUrl: "./toolbar.component.html",
+    styleUrl: "./toolbar.component.css",
 })
 export class ToolbarComponent {
     constructor(public toolbarService: ToolbarService) {}

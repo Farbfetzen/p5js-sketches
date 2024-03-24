@@ -7,10 +7,11 @@
 body {
     background-color: #181818;
     color: #ededed;
+    font-family: system-ui, sans-serif;
     height: 100%;
 }
 
-a {
+a:not(.button) {
     color: #81f3f3;
     text-decoration: none;
 
@@ -21,6 +22,19 @@ a {
     &:active {
         text-shadow: #81f3f3 0 0 1rem;
     }
+}
+
+a.button,
+button {
+    background: transparent;
+    border: 0.1rem solid #505050;
+    border-radius: 0.5rem;
+    color: inherit;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0.2rem 0.7rem;
+    text-decoration: none;
 }
 
 canvas {
