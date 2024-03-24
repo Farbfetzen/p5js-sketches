@@ -94,6 +94,7 @@ export class FallingSandComponent {
                     .add(p.mouseX, p.mouseY);
                 const cellX = p.floor(v.x / cellSize);
                 const cellY = p.floor(v.y / cellSize);
+                // This check is necessary to prevent spawning sand inside of piles.
                 if (!grid.getAt(cellX, cellY)) {
                     grid.setAt(cellX, cellY, currentHue);
                 }
