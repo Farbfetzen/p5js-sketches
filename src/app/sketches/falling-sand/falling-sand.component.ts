@@ -14,7 +14,7 @@ export class FallingSandComponent {
     createSketch = (p: p5): void => {
         const cellSize = 5;
         const creationRadius = 10; // in grid units
-        const newGrainsPerFrame = 100;
+        const newGrainsPerFrame = 20;
         let grid: Grid;
         let currentHue: number;
 
