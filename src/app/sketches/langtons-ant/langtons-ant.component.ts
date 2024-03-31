@@ -171,7 +171,6 @@ export class LangtonsAntComponent {
             y = p.floor(grid.height) / 2;
             direction = 0;
             state = 0;
-            color = p.color(0, 0, 0);
             moveMethods = [
                 (): void => {
                     // right
@@ -221,7 +220,6 @@ export class LangtonsAntComponent {
         p.setup = (): void => {
             p.createCanvas(600, 600);
             p.noStroke();
-            p.colorMode(p.HSL, 1);
             p.background(rules.gridColors[0]);
             grid = new Grid();
             ant = new Ant();
