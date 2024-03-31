@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 
+import { HomeComponent } from "src/app/home/home.component";
 import { CollatzConjectureComponent } from "src/app/sketches/collatz-conjecture/collatz-conjecture.component";
 import { ColorbandsComponent } from "src/app/sketches/colorbands/colorbands.component";
 import { EpicyclesComponent } from "src/app/sketches/epicycles/epicycles.component";
@@ -10,10 +11,9 @@ import { Noise1dComponent } from "src/app/sketches/noise1d/noise1d.component";
 import { Noise2dHslComponent } from "src/app/sketches/noise2d-hsl/noise2d-hsl.component";
 import { Noise2dComponent } from "src/app/sketches/noise2d/noise2d.component";
 import { PerlinNoiseFlowFieldComponent } from "src/app/sketches/perlin-noise-flow-field/perlin-noise-flow-field.component";
-import { WelcomeComponent } from "src/app/welcome/welcome.component";
 
 export const routes: Routes = [
-    { path: "", component: WelcomeComponent },
+    { path: "", component: HomeComponent },
     {
         path: "sketch",
         children: [
