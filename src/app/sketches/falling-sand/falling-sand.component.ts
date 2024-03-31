@@ -63,7 +63,7 @@ export class FallingSandComponent {
         p.setup = (): void => {
             p.createCanvas(600, 600);
             p.noStroke();
-            p.colorMode(p.HSL, 100);
+            p.colorMode(p.HSB, 360, 100, 100);
             grid = new Grid();
         };
 
@@ -87,7 +87,7 @@ export class FallingSandComponent {
                             grid.setAt(x, y, null);
                             grid.setAt(newX, newY, cellHue);
                         }
-                        p.fill(p.color(cellHue, 100, 50));
+                        p.fill(p.color(cellHue, 100, 100));
                         p.square(newX * cellSize, newY * cellSize, cellSize);
                     }
                 }
@@ -109,7 +109,7 @@ export class FallingSandComponent {
         }
 
         p.mousePressed = (): void => {
-            currentHue = p.random(100);
+            currentHue = p.random(360);
         };
 
         function getNextParticlePosition(x: number, y: number): [number, number] {
