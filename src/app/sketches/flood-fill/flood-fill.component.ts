@@ -13,6 +13,8 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
 export class FloodFillComponent {
     createSketch = (p: p5): void => {
         let backgroundColor: number;
+        const epsilon = 0.1;
+        let isFilling = false;
 
         p.setup = (): void => {
             p.createCanvas(600, 600);
@@ -52,6 +54,10 @@ export class FloodFillComponent {
 
         // TODO: Remove console.log
         function floodFill(x: number, y: number): void {
+            if (isFilling) {
+                return;
+            }
+            isFilling = true;
             const newColor = p.color(p.random(360), 100, 100, 100);
             const newRed = p.red(newColor);
             const newGreen = p.green(newColor);
@@ -89,17 +95,16 @@ export class FloodFillComponent {
 
                 // console.log(`current: ${currentRed}, ${currentGreen}, ${currentBlue}, ${currentAlpha}`);
                 if (
-                    currentRed === replaceRed &&
-                    currentGreen === replaceGreen &&
-                    currentBlue === replaceBlue &&
-                    currentAlpha === replaceAlpha
+                    p.abs(currentRed - replaceRed) < epsilon &&
+                    p.abs(currentGreen - replaceGreen) < epsilon &&
+                    p.abs(currentBlue - replaceBlue) < epsilon &&
+                    p.abs(currentAlpha - replaceAlpha) < epsilon
                 ) {
                     p.pixels[i] = newRed;
                     p.pixels[i + 1] = newGreen;
                     p.pixels[i + 2] = newBlue;
                     p.pixels[i + 3] = newAlpha;
                     // console.log(p.pixels.slice(i, i + 4));
-                    // return;
 
                     if (currentX > 0) {
                         frontier.push([currentX - 1, currentY]);
@@ -117,6 +122,7 @@ export class FloodFillComponent {
             }
             p.updatePixels();
             console.log("done");
+            isFilling = false;
         }
     };
 }
