@@ -12,17 +12,17 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
 })
 export class FloodFillComponent {
     createSketch = (p: p5): void => {
-        let backgroundColor: number;
-        const epsilon = 0.1;
+        const backgroundColor = 255;
         let isFilling = false;
 
         p.setup = (): void => {
-            p.createCanvas(600, 600);
+            p.createCanvas(600, 600, p.WEBGL);
             p.colorMode(p.HSB, 360, 100, 100, 100);
             p.pixelDensity(1);
             p.noLoop();
             p.noSmooth();
-            backgroundColor = 255;
+            // Translate to the top left corner because with WebGL the origin is at the center of the canvas.
+            p.translate(-p.width / 2, -p.height / 2);
             prepareShapes();
         };
 
@@ -52,7 +52,6 @@ export class FloodFillComponent {
             return p.floor(x + y * p.width) * 4;
         }
 
-        // TODO: Remove console.log
         function floodFill(x: number, y: number): void {
             if (isFilling) {
                 return;
@@ -65,7 +64,6 @@ export class FloodFillComponent {
             // Set alpha to 255 because p.alpha(newColor) does not output 255 for the maximum alpha.
             // This seems inconsistent with the values in the pixels array because there 255 is the max alpha.
             const newAlpha = 255;
-            // console.log(`new: ${newRed}, ${newGreen}, ${newBlue}, ${newAlpha}`);
 
             let i = xyToPixelsIndex(x, y);
             p.loadPixels();
@@ -73,7 +71,6 @@ export class FloodFillComponent {
             const replaceGreen = p.pixels[i + 1];
             const replaceBlue = p.pixels[i + 2];
             const replaceAlpha = p.pixels[i + 3];
-            // console.log(`replace: ${replaceRed}, ${replaceGreen}, ${replaceBlue}, ${replaceAlpha}`);
 
             if (
                 newRed === replaceRed &&
@@ -93,18 +90,16 @@ export class FloodFillComponent {
                 const currentBlue = p.pixels[i + 2];
                 const currentAlpha = p.pixels[i + 3];
 
-                // console.log(`current: ${currentRed}, ${currentGreen}, ${currentBlue}, ${currentAlpha}`);
                 if (
-                    p.abs(currentRed - replaceRed) < epsilon &&
-                    p.abs(currentGreen - replaceGreen) < epsilon &&
-                    p.abs(currentBlue - replaceBlue) < epsilon &&
-                    p.abs(currentAlpha - replaceAlpha) < epsilon
+                    currentRed === replaceRed &&
+                    currentGreen === replaceGreen &&
+                    currentBlue === replaceBlue &&
+                    currentAlpha === replaceAlpha
                 ) {
                     p.pixels[i] = newRed;
                     p.pixels[i + 1] = newGreen;
                     p.pixels[i + 2] = newBlue;
                     p.pixels[i + 3] = newAlpha;
-                    // console.log(p.pixels.slice(i, i + 4));
 
                     if (currentX > 0) {
                         frontier.push([currentX - 1, currentY]);
@@ -121,7 +116,6 @@ export class FloodFillComponent {
                 }
             }
             p.updatePixels();
-            console.log("done");
             isFilling = false;
         }
     };
