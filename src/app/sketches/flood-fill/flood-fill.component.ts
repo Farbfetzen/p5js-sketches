@@ -61,8 +61,8 @@ export class FloodFillComponent {
             const newRed = p.red(newColor);
             const newGreen = p.green(newColor);
             const newBlue = p.blue(newColor);
-            // Set alpha to 255 because p.alpha(newColor) does not output 255 for the maximum alpha.
-            // This seems inconsistent with the values in the pixels array because there 255 is the max alpha.
+            // Set alpha to 255 because the pixels array uses RGBA with a maximum of 255.
+            // Otherweise each successive fill darkens the image.
             const newAlpha = 255;
 
             let i = xyToPixelsIndex(x, y);
@@ -85,16 +85,11 @@ export class FloodFillComponent {
             while (frontier.length) {
                 const [currentX, currentY] = frontier.pop()!;
                 i = xyToPixelsIndex(currentX, currentY);
-                const currentRed = p.pixels[i];
-                const currentGreen = p.pixels[i + 1];
-                const currentBlue = p.pixels[i + 2];
-                const currentAlpha = p.pixels[i + 3];
-
                 if (
-                    currentRed === replaceRed &&
-                    currentGreen === replaceGreen &&
-                    currentBlue === replaceBlue &&
-                    currentAlpha === replaceAlpha
+                    replaceRed === p.pixels[i] &&
+                    replaceGreen === p.pixels[i + 1] &&
+                    replaceBlue === p.pixels[i + 2] &&
+                    replaceAlpha === p.pixels[i + 3]
                 ) {
                     p.pixels[i] = newRed;
                     p.pixels[i + 1] = newGreen;
