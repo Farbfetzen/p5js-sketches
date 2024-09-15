@@ -1,19 +1,25 @@
 import p5 from "p5";
 
 export class Particle {
-    position = this.p.createVector(this.p.random(this.p.width), this.p.random(this.p.height));
-    previousPosition = this.position.copy();
-    velocity = this.p.createVector();
-    acceleration = this.p.createVector();
+    position;
+    previousPosition;
+    velocity;
+    acceleration;
+    force;
     maxVelocity = 4;
-    force = this.p.createVector(0.5);
 
     constructor(
         private readonly p: p5,
         private readonly xyOffsetPerPixel: number,
         private readonly noiseWidth: number,
         private readonly edgeWrap: boolean,
-    ) {}
+    ) {
+        this.position = this.p.createVector(this.p.random(this.p.width), this.p.random(this.p.height));
+        this.previousPosition = this.position.copy();
+        this.velocity = this.p.createVector();
+        this.acceleration = this.p.createVector();
+        this.force = this.p.createVector(0.5);
+    }
 
     changeDirection(zOffset: number): void {
         const xOffset = (this.position.x * this.xyOffsetPerPixel) / this.noiseWidth;
