@@ -17,7 +17,6 @@ export class ColorbandsComponent {
             p.pixelDensity(1);
             p.noLoop();
             p.colorMode(p.HSL, 1);
-            p.noiseSeed(p.random(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER));
         };
 
         p.draw = (): void => {

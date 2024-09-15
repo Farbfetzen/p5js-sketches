@@ -20,7 +20,6 @@ export class Noise2dComponent {
             p.createCanvas(400, 400);
             p.pixelDensity(1);
             p.noLoop();
-            p.noiseSeed(p.random(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER));
         };
 
         p.draw = (): void => {

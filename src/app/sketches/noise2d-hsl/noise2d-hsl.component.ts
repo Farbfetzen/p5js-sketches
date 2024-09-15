@@ -19,7 +19,6 @@ export class Noise2dHslComponent {
             p.pixelDensity(1);
             p.colorMode(p.HSL, 1);
             p.noLoop();
-            p.noiseSeed(p.random(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER));
         };
 
         p.draw = (): void => {

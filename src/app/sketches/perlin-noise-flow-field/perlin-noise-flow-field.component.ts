@@ -28,7 +28,6 @@ export class PerlinNoiseFlowFieldComponent {
             p.strokeCap(p.SQUARE);
             p.colorMode(p.HSL, p.TWO_PI, 1, 1, 1);
             p.background(0.1);
-            p.noiseSeed(p.random(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER));
             for (let i = 0; i < 5000; i++) {
                 particles[i] = new Particle(p, xyOffsetPerPixel, noiseWidth, wrapAroundEdges);
             }

@@ -40,6 +40,7 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit(): void {
         this.sketch = new p5(this.sketchFun, this.hostElement.nativeElement);
+        this.resetNoise();
     }
 
     ngOnDestroy(): void {
@@ -49,6 +50,18 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
 
     refresh(): void {
         this.sketch.remove();
+        // Reset the noise before recreating the sketch.
+        // Otherwise, the first click on the refresh button would create a sketch with the same seed.
+        this.resetNoise();
         this.sketch = new p5(this.sketchFun, this.hostElement.nativeElement);
+    }
+
+    /**
+     * Create a new noise seed so sketches don't reuse the same seed when they are recreated.
+     * This must be done because the p5 object is not destroyed when the sketch is removed
+     * and the seed seems to be global.
+     */
+    private resetNoise(): void {
+        this.sketch.noiseSeed(this.sketch.random(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER));
     }
 }
