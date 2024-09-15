@@ -35,7 +35,7 @@ export class FallingSandComponent {
                 this.width = p.width / cellSize;
                 this.height = p.height / cellSize;
                 this.size = this.width * this.height;
-                this.grid = Array(this.size).fill(null);
+                this.grid = Array<number | null>(this.size).fill(null);
             }
 
             xyToIndex(x: number, y: number): number {
@@ -78,7 +78,7 @@ export class FallingSandComponent {
             for (let y = grid.height - 1; y >= 0; y--) {
                 // Randomize the x coordinates because otherwise the grains slide down differently on the right
                 // and the left side of a pile.
-                const xCoordinates = [...Array(grid.width)].map((_, i) => i).sort(() => Math.random() - 0.5);
+                const xCoordinates = Array.from({ length: grid.width }, (_, i) => i).sort(() => Math.random() - 0.5);
                 for (const x of xCoordinates) {
                     const cellHue = grid.getAt(x, y);
                     if (cellHue !== null) {
@@ -128,6 +128,9 @@ export class FallingSandComponent {
             const bottomRightIsAvailable = right < grid.width && grid.getAt(right, below) === null;
             if (bottomLeftIsAvailable) {
                 if (bottomRightIsAvailable) {
+                    // Disable no-unsafe-return because p.random() returns a random element from the array
+                    // and the array contains only numbers, so it's fine.
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                     return [p.random([left, right]), below];
                 } else {
                     return [left, below];

@@ -8,11 +8,17 @@ module.exports = tseslint.config(
         files: ["**/*.ts"],
         extends: [
             eslint.configs.recommended,
-            ...tseslint.configs.recommended,
-            ...tseslint.configs.stylistic,
+            ...tseslint.configs.recommendedTypeChecked,
+            ...tseslint.configs.stylisticTypeChecked,
             ...angular.configs.tsRecommended,
         ],
         processor: angular.processInlineTemplates,
+        languageOptions: {
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: __dirname,
+            },
+        },
         rules: {
             "@angular-eslint/directive-selector": [
                 "error",

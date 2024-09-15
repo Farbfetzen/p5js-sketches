@@ -162,7 +162,7 @@ export class LangtonsAntComponent {
             width = p.width / cellSize;
             height = p.height / cellSize;
             size = this.width * this.height;
-            grid = Array(this.size).fill(0);
+            grid = Array<number>(this.size).fill(0);
             center = p.floor(this.width / 2 + (this.height / 2) * this.width);
         }
 

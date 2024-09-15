@@ -32,7 +32,7 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
     private refreshButtonSubscription;
 
     constructor(
-        private hostElement: ElementRef,
+        private hostElement: ElementRef<HTMLElement>,
         toolbarService: ToolbarService,
     ) {
         this.refreshButtonSubscription = toolbarService.refreshButtonEvent$.subscribe(() => this.refresh());
