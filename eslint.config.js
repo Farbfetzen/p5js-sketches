@@ -20,6 +20,34 @@ module.exports = tseslint.config(
             },
         },
         rules: {
+            // eslint
+            "no-console": ["error", { allow: ["warn", "error"] }],
+            "no-constructor-return": "error",
+            "no-restricted-imports": [
+                "error",
+                {
+                    patterns: [
+                        {
+                            group: ["./", "../"],
+                            message: "Relative imports are not allowed.",
+                        },
+                    ],
+                },
+            ],
+            "no-self-compare": "error",
+            "no-template-curly-in-string": "error",
+            "no-useless-assignment": "error",
+
+            // typescript-eslint
+            "@typescript-eslint/explicit-function-return-type": "warn",
+            "@typescript-eslint/no-deprecated": "warn",
+            "@typescript-eslint/no-extraneous-class": ["warn", { allowWithDecorator: true }],
+            "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
+            "@typescript-eslint/no-unnecessary-parameter-property-assignment": "warn",
+            "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+            "@typescript-eslint/prefer-readonly": "warn",
+
+            // angular
             "@angular-eslint/directive-selector": [
                 "error",
                 {

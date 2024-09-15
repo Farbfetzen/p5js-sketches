@@ -302,6 +302,7 @@ export class EpicyclesComponent {
                 showCircles = !showCircles;
             } else if (p.key === "d") {
                 // debug info
+                // eslint-disable-next-line no-console
                 console.log(
                     `currentAngle: ${currentAngle}` +
                         `\npoints: ${points.length}` +

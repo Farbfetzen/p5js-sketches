@@ -9,10 +9,10 @@ export class Particle {
     force = this.p.createVector(0.5);
 
     constructor(
-        private p: p5,
-        private xyOffsetPerPixel: number,
-        private noiseWidth: number,
-        private edgeWrap: boolean,
+        private readonly p: p5,
+        private readonly xyOffsetPerPixel: number,
+        private readonly noiseWidth: number,
+        private readonly edgeWrap: boolean,
     ) {}
 
     changeDirection(zOffset: number): void {

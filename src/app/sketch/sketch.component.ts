@@ -29,10 +29,10 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
     centeredHorizontally = false;
 
     private sketch!: p5;
-    private refreshButtonSubscription;
+    private readonly refreshButtonSubscription;
 
     constructor(
-        private hostElement: ElementRef<HTMLElement>,
+        private readonly hostElement: ElementRef<HTMLElement>,
         toolbarService: ToolbarService,
     ) {
         this.refreshButtonSubscription = toolbarService.refreshButtonEvent$.subscribe(() => this.refresh());

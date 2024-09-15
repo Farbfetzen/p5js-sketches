@@ -4,7 +4,7 @@ import { Observable, Subject } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class ToolbarService {
-    private _refreshButtonEvent = new Subject<Event>();
+    private readonly _refreshButtonEvent = new Subject<Event>();
 
     refreshButtonTriggered(event: Event): void {
         this._refreshButtonEvent.next(event);
