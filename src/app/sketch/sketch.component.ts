@@ -7,7 +7,6 @@ import { ToolbarService } from "src/app/toolbar/toolbar.service";
 @Component({
     selector: "app-sketch",
     standalone: true,
-    imports: [],
     template: ``,
     styles: `
         :host {
