@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer tailwind-utilities {
+    @tailwind components;
+    @tailwind utilities;
+}
+
 /* * {
     outline: 1px dotted red;
 } */

@@ -1,4 +1,4 @@
 <a class="button" routerLink="/">p5js-Sketches</a>
 @if (toolbarService.refreshButtonHasObservers()) {
-    <button type="button" (click)="toolbarService.refreshButtonTriggered($event)">refresh</button>
+    <button (click)="toolbarService.refreshButtonTriggered($event)" type="button">refresh</button>
 }
