@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 
 /* * {
     outline: 1px dotted red;
