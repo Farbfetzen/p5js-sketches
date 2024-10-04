@@ -30,7 +30,19 @@
                                 "input": "public"
                             }
                         ],
-                        "styles": ["src/styles.scss"],
+                        "styles": [
+                            "src/styles.scss",
+                            {
+                                "input": "src/themes/aura-light-pink.css",
+                                "bundleName": "aura-light-pink",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/themes/aura-dark-pink.css",
+                                "bundleName": "aura-dark-pink",
+                                "inject": false
+                            }
+                        ],
                         "scripts": []
                     },
                     "configurations": {
@@ -92,7 +104,19 @@
                                 "input": "public"
                             }
                         ],
-                        "styles": ["src/styles.scss"],
+                        "styles": [
+                            "src/styles.scss",
+                            {
+                                "input": "src/themes/aura-light-pink.css",
+                                "bundleName": "aura-light-pink",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/themes/aura-dark-pink.css",
+                                "bundleName": "aura-dark-pink",
+                                "inject": false
+                            }
+                        ],
                         "scripts": [],
                         "karmaConfig": "karma.conf.js"
                     }

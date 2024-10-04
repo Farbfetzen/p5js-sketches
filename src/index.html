@@ -6,6 +6,27 @@
         <base href="/" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="favicon.ico" rel="icon" type="image/x-icon" />
+        <style>
+            /*
+                Order the layers so that primeng and it's themes have a higher priority than normalize.
+                See https://primeng.org/guides/csslayer#reset.
+                This is here above app-theme because the order must be declared before the theme is imported.
+            */
+            @layer normalize, primeng;
+        </style>
+        <!-- Stylesheet link without href to prevent FOUC on dark theme. -->
+        <link id="app-theme" rel="stylesheet" type="text/css" />
+        <script>
+            // Detect dark mode preference from browser/system settings during initial page load.
+            // This script is in <head> to avoid FOUC.
+            const theme = localStorage.getItem("p5s-theme");
+            let appThemeElement = document.getElementById("app-theme");
+            if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                appThemeElement.href = "aura-dark-pink.css";
+            } else {
+                appThemeElement.href = "aura-light-pink.css";
+            }
+        </script>
     </head>
     <body>
         <app-root></app-root>
