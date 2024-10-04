@@ -6,15 +6,14 @@
     "private": "true",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
+        "serve": "ng serve",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "testCi": "ng test --browsers=ChromeHeadless --watch=false",
         "formatCheck": "prettier --check .",
         "formatWrite": "prettier --write .",
         "lint": "ng lint",
-        "check": "ng lint && npm run formatCheck && npm run testCi"
+        "check": "npm run formatCheck && ng lint && ng test --browsers=ChromeHeadless --watch=false"
     },
     "dependencies": {
         "@angular/animations": "18.2.4",
