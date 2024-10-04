@@ -27,7 +27,7 @@ export class EpicyclesComponent {
         // TODO: Add a selectbox for selecting a shape.
         // TODO: Add buttons that to the same as the keybindings.
 
-        const filename = "assets/epicycle-shapes/heart.txt";
+        const filename = "epicycle-shapes/heart.txt";
         let fadeLine = false;
         let showCircles = true;
         const canvasWidth = 800;
