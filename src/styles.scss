@@ -1,3 +1,5 @@
+// The layer order is defnied in index.html.
+
 @import "node_modules/modern-normalize/modern-normalize.css" layer(normalize);
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
@@ -7,7 +9,7 @@
 } */
 
 body {
-    background-color: #181818;
+    background-color: var(--surface-ground);
     color: #ededed;
     font-family: system-ui, sans-serif;
     height: 100%;
