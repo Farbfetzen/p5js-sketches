@@ -67,6 +67,17 @@ module.exports = tseslint.config(
         },
     },
     {
+        files: ["**/*.spec.ts"],
+        rules: {
+            // Disable this rule because some tests need empty mock components.
+            "@typescript-eslint/no-extraneous-class": "off",
+            // Disable this rule because it complains about jasmine.createSpyObj().
+            "@typescript-eslint/no-unsafe-assignment": "off",
+            // Disable because it complains about expect(...).toHaveBeenCalled(...).
+            "@typescript-eslint/unbound-method": "off",
+        },
+    },
+    {
         files: ["**/*.html"],
         extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
         rules: {},

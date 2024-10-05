@@ -5,6 +5,7 @@ import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
 import { RefreshService } from "src/app/refresh/refresh.service";
+import { ThemeService } from "src/app/theme/theme.service";
 
 @Component({
     selector: "app-sidebar",
@@ -20,6 +21,13 @@ import { RefreshService } from "src/app/refresh/refresh.service";
             showDelay="500"
             aria-label="Home"
         ></a>
+        <p-button
+            [icon]="'pi ' + (themeService.isLightTheme() ? 'pi-sun' : 'pi-moon')"
+            [outlined]="true"
+            [rounded]="true"
+            (onClick)="themeService.switchTheme()"
+            ariaLabel="Switch theme"
+        />
         @if (refreshService.isObserved()) {
             <p-button
                 [outlined]="true"
@@ -31,5 +39,8 @@ import { RefreshService } from "src/app/refresh/refresh.service";
     `,
 })
 export class SidebarComponent {
-    constructor(public readonly refreshService: RefreshService) {}
+    constructor(
+        public readonly refreshService: RefreshService,
+        public readonly themeService: ThemeService,
+    ) {}
 }
