@@ -1,13 +1,13 @@
 import { TestBed } from "@angular/core/testing";
 
-import { ToolbarService } from "src/app/toolbar/toolbar.service";
+import { RefreshService } from "src/app/refresh/refresh.service";
 
-describe("ToolbarService", () => {
-    let service: ToolbarService;
+describe("RefreshService", () => {
+    let service: RefreshService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(ToolbarService);
+        service = TestBed.inject(RefreshService);
     });
 
     it("should be created", () => {

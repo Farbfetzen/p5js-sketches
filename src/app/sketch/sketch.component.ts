@@ -2,20 +2,20 @@ import p5 from "p5";
 
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnDestroy, booleanAttribute } from "@angular/core";
 
-import { ToolbarService } from "src/app/toolbar/toolbar.service";
+import { RefreshService } from "src/app/refresh/refresh.service";
 
 @Component({
     selector: "app-sketch",
     standalone: true,
     template: ``,
     styles: `
-        :host {
-            display: block;
-            width: fit-content;
-        }
-        :host.center-horiz {
-            margin: 0 auto;
-        }
+        // :host {
+        //     display: block;
+        //     width: fit-content;
+        // }
+        // :host.center-horiz {
+        //     margin: 0 auto;
+        // }
     `,
 })
 export class SketchComponent implements AfterViewInit, OnDestroy {
@@ -32,9 +32,9 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
 
     constructor(
         private readonly hostElement: ElementRef<HTMLElement>,
-        toolbarService: ToolbarService,
+        readonly refreshService: RefreshService,
     ) {
-        this.refreshButtonSubscription = toolbarService.refreshButtonEvent$.subscribe(() => this.refresh());
+        this.refreshButtonSubscription = refreshService.subscribe(() => this.refresh());
     }
 
     ngAfterViewInit(): void {
