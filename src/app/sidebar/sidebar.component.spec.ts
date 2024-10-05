@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { provideRouter } from "@angular/router";
 
-import { ToolbarComponent } from "src/app/toolbar/toolbar.component";
+import { SidebarComponent } from "src/app/sidebar/sidebar.component";
 
-describe("ToolbarComponent", () => {
-    let component: ToolbarComponent;
-    let fixture: ComponentFixture<ToolbarComponent>;
+describe("SidebarComponent", () => {
+    let component: SidebarComponent;
+    let fixture: ComponentFixture<SidebarComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ToolbarComponent],
+            imports: [SidebarComponent],
             providers: [provideRouter([])],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(ToolbarComponent);
+        fixture = TestBed.createComponent(SidebarComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

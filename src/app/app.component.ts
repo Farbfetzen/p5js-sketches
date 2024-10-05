@@ -1,15 +1,17 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 
-import { ToolbarComponent } from "src/app/toolbar/toolbar.component";
+import { SidebarComponent } from "src/app/sidebar/sidebar.component";
 
 @Component({
     selector: "app-root",
     standalone: true,
-    imports: [RouterOutlet, ToolbarComponent],
+    imports: [RouterOutlet, SidebarComponent],
     template: `
-        <app-toolbar />
-        <router-outlet />
+        <div class="main-container">
+            <app-sidebar />
+            <router-outlet />
+        </div>
     `,
 })
 export class AppComponent {}
