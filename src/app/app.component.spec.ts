@@ -1,7 +1,10 @@
+import { MockComponent } from "ng-mocks";
+
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { provideRouter } from "@angular/router";
 
 import { AppComponent } from "src/app/app.component";
+import { SidebarComponent } from "src/app/sidebar/sidebar.component";
 
 describe("AppComponent", () => {
     let component: AppComponent;
@@ -9,7 +12,7 @@ describe("AppComponent", () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [AppComponent],
+            imports: [AppComponent, MockComponent(SidebarComponent)],
             providers: [provideRouter([])],
         }).compileComponents();
         fixture = TestBed.createComponent(AppComponent);
