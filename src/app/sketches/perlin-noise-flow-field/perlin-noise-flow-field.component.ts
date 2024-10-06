@@ -9,7 +9,7 @@ import { Particle } from "src/app/sketches/perlin-noise-flow-field/particle";
     selector: "app-perlin-noise-flow-field",
     standalone: true,
     imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
+    template: `<app-sketch [sketchFun]="createSketch" />`,
 })
 export class PerlinNoiseFlowFieldComponent {
     createSketch = (p: p5): void => {

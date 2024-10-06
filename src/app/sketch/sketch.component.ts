@@ -1,6 +1,6 @@
 import p5 from "p5";
 
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnDestroy, booleanAttribute } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from "@angular/core";
 
 import { RefreshService } from "src/app/refresh/refresh.service";
 
@@ -8,24 +8,10 @@ import { RefreshService } from "src/app/refresh/refresh.service";
     selector: "app-sketch",
     standalone: true,
     template: ``,
-    styles: `
-        // :host {
-        //     display: block;
-        //     width: fit-content;
-        // }
-        // :host.center-horiz {
-        //     margin: 0 auto;
-        // }
-    `,
 })
 export class SketchComponent implements AfterViewInit, OnDestroy {
     /** A function that creates a sketch. */
     @Input({ required: true }) sketchFun!: (p: p5) => void;
-
-    /** Set true if the sketch component should be centered horizontally in its container. */
-    @Input({ transform: booleanAttribute })
-    @HostBinding("class.center-horiz")
-    centeredHorizontally = false;
 
     private sketch!: p5;
     private readonly refreshButtonSubscription;

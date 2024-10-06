@@ -8,7 +8,7 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     selector: "app-noise2d",
     standalone: true,
     imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
+    template: `<app-sketch [sketchFun]="createSketch" />`,
 })
 export class Noise2dComponent {
     createSketch = (p: p5): void => {

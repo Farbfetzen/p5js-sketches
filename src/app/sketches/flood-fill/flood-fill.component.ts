@@ -8,7 +8,7 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     selector: "app-flood-fill",
     standalone: true,
     imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
+    template: `<app-sketch [sketchFun]="createSketch" />`,
 })
 export class FloodFillComponent {
     createSketch = (p: p5): void => {

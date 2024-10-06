@@ -19,7 +19,7 @@ References:
     selector: "app-epicycles",
     standalone: true,
     imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
+    template: `<app-sketch [sketchFun]="createSketch" />`,
 })
 export class EpicyclesComponent {
     createSketch = (p: p5): void => {
