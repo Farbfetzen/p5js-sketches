@@ -14,6 +14,7 @@ import { ThemeService } from "src/app/theme/theme.service";
     template: `
         <a
             [outlined]="true"
+            [rounded]="true"
             icon="pi pi-home"
             pButton
             pTooltip="Home"

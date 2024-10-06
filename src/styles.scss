@@ -25,11 +25,32 @@ body {
     height: 100vh;
 }
 
+app-root {
+    display: flex;
+    height: 100%;
+
+    // Style the main routed component.
+    router-outlet + * {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 app-sidebar {
     display: grid;
-    gap: 1rem;
-    margin-right: 1rem;
-    height: fit-content;
+    gap: 0.5rem;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(from var(--primary-color) r g b / 0.33);
+    border-radius: var(--border-radius);
+    background-color: rgba(from var(--surface-ground) r g b / 0.33);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 canvas {
@@ -40,21 +61,6 @@ canvas {
         https://stackoverflow.com/questions/8600393/there-is-a-4px-gap-below-canvas-video-audio-elements-in-html5
     */
     display: block;
-}
-
-.main-container {
-    display: flex;
-    height: 100%;
-    padding: 1rem;
-
-    /* Style the main routed component. */
-    > router-outlet + * {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        justify-content: center;
-        align-items: center;
-    }
 }
 
 .p-button.p-button-icon-only {
