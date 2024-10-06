@@ -67,3 +67,15 @@ canvas {
     // Make the squared buttons actually square and the same height as the rounded ones.
     height: 2.5rem;
 }
+
+dd {
+    margin-bottom: 1em;
+}
+
+dt {
+    font-weight: bold;
+
+    &::before {
+        content: "\2022\20";
+    }
+}

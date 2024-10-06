@@ -8,7 +8,7 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     selector: "app-collatz-conjecture",
     standalone: true,
     imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
+    template: `<app-sketch [sketchFun]="createSketch" />`,
 })
 export class CollatzConjectureComponent {
     createSketch = (p: p5): void => {

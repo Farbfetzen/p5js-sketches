@@ -8,7 +8,7 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     selector: "app-firefly-messages",
     standalone: true,
     imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
+    template: `<app-sketch [sketchFun]="createSketch" />`,
 })
 export class FireflyMessagesComponent {
     createSketch = (p: p5): void => {

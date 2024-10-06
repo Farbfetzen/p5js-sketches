@@ -8,7 +8,7 @@ import { SketchComponent } from "src/app/sketch/sketch.component";
     selector: "app-falling-sand",
     standalone: true,
     imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" centeredHorizontally="true" />`,
+    template: `<app-sketch [sketchFun]="createSketch" />`,
     styles: `
         app-sketch {
             /* border should be twice as thick as the sand grains */
