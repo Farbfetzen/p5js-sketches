@@ -8,10 +8,8 @@ import { SidebarComponent } from "src/app/sidebar/sidebar.component";
     standalone: true,
     imports: [RouterOutlet, SidebarComponent],
     template: `
-        <div class="main-container">
-            <app-sidebar />
-            <router-outlet />
-        </div>
+        <app-sidebar />
+        <router-outlet />
     `,
 })
 export class AppComponent {}
