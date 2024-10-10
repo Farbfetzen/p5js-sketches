@@ -18,9 +18,9 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
 
     constructor(
         private readonly hostElement: ElementRef<HTMLElement>,
-        readonly refreshService: RefreshService,
+        private readonly refreshService: RefreshService,
     ) {
-        this.refreshButtonSubscription = refreshService.subscribe(() => this.refresh());
+        this.refreshButtonSubscription = this.refreshService.subscribe(() => this.refresh());
     }
 
     ngAfterViewInit(): void {
