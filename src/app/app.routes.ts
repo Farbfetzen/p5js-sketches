@@ -3,6 +3,7 @@ import { Routes } from "@angular/router";
 import { HomeComponent } from "src/app/home/home.component";
 import { CollatzConjectureComponent } from "src/app/sketches/collatz-conjecture/collatz-conjecture.component";
 import { ColorbandsComponent } from "src/app/sketches/colorbands/colorbands.component";
+import { CornerCuttingComponent } from "src/app/sketches/corner-cutting/corner-cutting.component";
 import { EpicyclesComponent } from "src/app/sketches/epicycles/epicycles.component";
 import { FallingSandComponent } from "src/app/sketches/falling-sand/falling-sand.component";
 import { FireflyMessagesComponent } from "src/app/sketches/firefly-messages/firefly-messages.component";
@@ -20,6 +21,7 @@ export const routes: Routes = [
         children: [
             { path: "collatz-conjecture", component: CollatzConjectureComponent, title: "Collatz Conjecture" },
             { path: "colorbands", component: ColorbandsComponent, title: "Colorbands" },
+            { path: "corner-cutting", component: CornerCuttingComponent, title: "Corner-Cutting" },
             { path: "epicycles", component: EpicyclesComponent, title: "Epicycles" },
             { path: "falling-sand", component: FallingSandComponent, title: "Falling Sand" },
             { path: "firefly-messages", component: FireflyMessagesComponent, title: "Firefly Messages" },
