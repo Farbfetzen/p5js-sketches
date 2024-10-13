@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 
-import { SidebarComponent } from "src/app/sidebar/sidebar.component";
+import { MainMenuComponent } from "src/app/main-menu/main-menu.component";
 
 @Component({
     selector: "app-root",
     standalone: true,
-    imports: [RouterOutlet, SidebarComponent],
+    imports: [RouterOutlet, MainMenuComponent],
     template: `
-        <app-sidebar />
+        <app-main-menu class="menu-overlay overlay-left" />
         <router-outlet />
     `,
 })

@@ -39,18 +39,41 @@ app-root {
     }
 }
 
-app-sidebar {
-    display: grid;
-    gap: 0.5rem;
+.menu-overlay {
     position: fixed;
     top: 1rem;
-    left: 1rem;
+
+    display: grid;
+    gap: 0.5rem;
+    justify-items: center;
+
     padding: 0.5rem;
     border: 1px solid rgba(from var(--primary-color) r g b / 0.33);
     border-radius: var(--border-radius);
+
     background-color: rgba(from var(--surface-ground) r g b / 0.33);
     backdrop-filter: blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    &.overlay-left {
+        left: 1rem;
+    }
+
+    &.overlay-right {
+        right: 1rem;
+    }
+
+    .slider-with-label {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        color: var(--primary-color);
+
+        label {
+            margin-left: 10px;
+        }
+    }
 }
 
 canvas {
@@ -61,6 +84,12 @@ canvas {
         https://stackoverflow.com/questions/8600393/there-is-a-4px-gap-below-canvas-video-audio-elements-in-html5
     */
     display: block;
+}
+
+p-slider {
+    // Fix margins to take the size of the slider handle into account.
+    padding: 8px 10px;
+    width: 100%;
 }
 
 .p-button.p-button-icon-only {

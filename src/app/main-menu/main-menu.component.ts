@@ -8,7 +8,7 @@ import { RefreshService } from "src/app/refresh/refresh.service";
 import { ThemeService } from "src/app/theme/theme.service";
 
 @Component({
-    selector: "app-sidebar",
+    selector: "app-main-menu",
     standalone: true,
     imports: [ButtonModule, RouterLink, TooltipModule],
     template: `
@@ -39,7 +39,7 @@ import { ThemeService } from "src/app/theme/theme.service";
         }
     `,
 })
-export class SidebarComponent {
+export class MainMenuComponent {
     constructor(
         public readonly refreshService: RefreshService,
         public readonly themeService: ThemeService,

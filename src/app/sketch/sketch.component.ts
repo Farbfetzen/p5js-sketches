@@ -13,7 +13,7 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
     /** A function that creates a sketch. */
     @Input({ required: true }) sketchFun!: (p: p5) => void;
 
-    private sketch!: p5;
+    sketch!: p5;
     private readonly refreshButtonSubscription;
 
     constructor(
