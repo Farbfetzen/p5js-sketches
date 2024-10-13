@@ -24,7 +24,7 @@
         "@angular/platform-browser": "18.2.8",
         "@angular/platform-browser-dynamic": "18.2.8",
         "@angular/router": "18.2.8",
-        "mathjs": "13.1.1",
+        "mathjs": "13.2.0",
         "modern-normalize": "3.0.1",
         "p5": "1.11.0",
         "primeicons": "7.0.0",
