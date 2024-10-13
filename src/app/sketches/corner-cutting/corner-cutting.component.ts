@@ -1,6 +1,8 @@
 import p5 from "p5";
+import { SliderModule } from "primeng/slider";
 
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
 import { SketchComponent } from "src/app/sketch/sketch.component";
 import { cutCorners } from "src/app/util/corner-cutting";
@@ -8,26 +10,47 @@ import { cutCorners } from "src/app/util/corner-cutting";
 /*
 TODO:
 - Sliders for
-    - ratio (between 0 and 2 inclusive)
-    - iterations (between 0 and 5 inclusive)
     - numberOfHorizontalPolygons
     - numberOfVerticalPolygons
     - standard deviations (or just use p.random()?)
     - margins?
+    - Only redraw when necessary.
 */
 
 @Component({
     selector: "app-corner-cutting",
     standalone: true,
-    imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" />`,
+    imports: [SketchComponent, FormsModule, SliderModule],
+    template: `
+        <app-sketch [sketchFun]="createSketch" />
+
+        <div class="menu-overlay overlay-right">
+            <div class="slider-with-label">
+                <label for="ratio">Ratio: {{ ratio }}</label>
+                <p-slider id="ratio" [(ngModel)]="ratio" max="1.5" min="-1" step="0.1" />
+            </div>
+            <div class="slider-with-label">
+                <label for="iterations">Iterations: {{ iterations }}</label>
+                <p-slider id="iterations" [(ngModel)]="iterations" max="5" min="0" />
+            </div>
+        </div>
+    `,
+    styles: `
+        .slider-with-label {
+            width: 15rem;
+        }
+    `,
 })
 export class CornerCuttingComponent {
+    @ViewChild(SketchComponent) sketchComponent!: SketchComponent;
+    ratio = 0.2;
+    iterations = 3;
+
     createSketch = (p: p5): void => {
         class Polygon {
             constructor(
-                public vertices: p5.Vector[],
-                private readonly color: p5.Color,
+                public readonly vertices: p5.Vector[],
+                public readonly color: p5.Color,
             ) {}
 
             draw(): void {
@@ -45,24 +68,20 @@ export class CornerCuttingComponent {
         const numberOfHorizontalPolygons = 10;
         const numberOfVerticalPolygons = 10;
         const polygons: Polygon[] = [];
-        const cuttingRatio = 0.25;
-        const cuttingIterations = 3;
 
         p.setup = (): void => {
             const size = p.windowHeight - 2 * canvasMargin;
             p.createCanvas(size, size);
-            p.noLoop();
             p.strokeWeight(2);
             p.strokeJoin(p.ROUND);
+            createPolygons();
         };
 
         p.draw = (): void => {
             p.background(240);
-            createPolygons();
-            for (const polygon of polygons) {
-                polygon.vertices = cutCorners(polygon.vertices, cuttingRatio, cuttingIterations);
-                polygon.draw();
-            }
+            polygons
+                .map((p) => new Polygon(cutCorners(p.vertices, this.ratio, this.iterations), p.color))
+                .forEach((p) => p.draw());
         };
 
         function createPolygons(): void {
