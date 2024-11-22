@@ -42,7 +42,7 @@ export class EpicyclesComponent {
         // Skip point if distance to previous point is smaller than this to avoid creating unnecessary points.
         const minDistance = 2;
 
-        const path: p5.Vector[] = [];
+        const path: math.Complex[] = [];
         let points: p5.Vector[] = [];
         let angles: number[] = [];
         const signal: { frequency: number; amplitude: number; phase: number }[] = [];
@@ -53,6 +53,7 @@ export class EpicyclesComponent {
         let backgroundColor: p5.Color;
 
         function loadPath(lines: string): void {
+            const points = [];
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i];
                 if (!line || line.startsWith("//")) {
@@ -65,16 +66,18 @@ export class EpicyclesComponent {
                     throw new Error("Error in line " + i + " while trying to convert strings to numbers: " + line);
                 }
                 // Negate the y value because y increases downwards on the canvas.
-                path.push(p.createVector(x, -y));
+                points.push(p.createVector(x, -y));
             }
+            transformPath(points);
+            points.forEach((p) => path.push(math.complex(p.x, p.y)));
         }
 
-        function transformPath(): void {
+        function transformPath(points: p5.Vector[]): void {
             let maxX = -Infinity;
             let minX = Infinity;
             let maxY = -Infinity;
             let minY = Infinity;
-            for (const point of path) {
+            for (const point of points) {
                 if (point.x > maxX) {
                     maxX = point.x;
                 } else if (point.x < minX) {
@@ -89,23 +92,23 @@ export class EpicyclesComponent {
 
             // Center the shape around (0, 0).
             const center = p.createVector((maxX + minX) / 2, (maxY + minY) / 2);
-            for (const p of path) {
+            for (const p of points) {
                 p.sub(center);
             }
 
-            const pathWidth = maxX - minX;
-            const pathHeight = maxY - minY;
+            const width = maxX - minX;
+            const height = maxY - minY;
 
             // Scale the shape to the desired size.
             const maxAllowedWidth = canvasWidth * scaleFactor;
             const maxAllowedHeight = canvasHeight * scaleFactor;
             let ratio;
             if (maxAllowedWidth <= maxAllowedHeight) {
-                ratio = maxAllowedWidth / pathWidth;
+                ratio = maxAllowedWidth / width;
             } else {
-                ratio = maxAllowedHeight / pathHeight;
+                ratio = maxAllowedHeight / height;
             }
-            for (const p of path) {
+            for (const p of points) {
                 p.mult(ratio);
             }
         }
@@ -115,9 +118,8 @@ export class EpicyclesComponent {
          * with scaled amplitudes and alternating positive and negative frequencies.
          */
         function dft(): void {
-            const complexPath = path.map((p) => math.complex(p.x, p.y));
-            const n = complexPath.length;
-            math.fft(complexPath).forEach((value, index) =>
+            const n = path.length;
+            math.fft(path).forEach((value, index) =>
                 signal.push({
                     frequency: index > n / 2 ? index - n : index,
                     amplitude: (math.abs(value) as unknown as number) / n,
@@ -212,7 +214,6 @@ export class EpicyclesComponent {
             maxDeltaTime = (1 / p.getTargetFrameRate()) * 1000 * 2;
             lineColor = p.color(255, 0, 255);
             backgroundColor = p.color(32);
-            transformPath();
             dft();
             setOrigin();
             sortEpicycles();
