@@ -23,7 +23,6 @@ References:
 })
 export class EpicyclesComponent {
     createSketch = (p: p5): void => {
-        // TODO: Find out why closed_hilbert loads so slowly and make it faster.
         // TODO: Add a selectbox for selecting a shape.
         // TODO: Add buttons that to the same as the keybindings.
 
@@ -113,29 +112,18 @@ export class EpicyclesComponent {
 
         /**
          * Discrete Fourier Transform
-         *
-         * Algorithm taken from Wikipedia: https://en.wikipedia.org/wiki/Discrete_Fourier_transform
-         * X_k = SUM(n=0, N-1)(x_n * e^(-(i * 2 * PI * k * n) / N))
+         * with scaled amplitudes and alternating positive and negative frequencies.
          */
         function dft(): void {
-            const x = path.map((p) => math.complex(p.x, p.y));
-            const N = path.length;
-            const minusI2Pi = math.chain(math.i).multiply(p.TWO_PI).unaryMinus().done();
-            for (let k = 0; k < N; k++) {
-                let X_k = math.complex();
-                for (let n = 0; n < N; n++) {
-                    // X_k = X_k.add(x[n].mul(math.exp(minusI2Pi.mul((k * n) / N))));
-                    X_k = math.add(
-                        X_k,
-                        math.multiply(x[n], math.exp(math.multiply(minusI2Pi, (k * n) / N))),
-                    ) as math.Complex;
-                }
-                const frequency = k > N / 2 ? k - N : k;
-                //@ts-expect-error works anyway
-                const amplitude = math.abs(X_k) / N; // radius
-                const phase = math.arg(X_k);
-                signal.push({ frequency, amplitude, phase });
-            }
+            const complexPath = path.map((p) => math.complex(p.x, p.y));
+            const n = complexPath.length;
+            math.fft(complexPath).forEach((value, index) =>
+                signal.push({
+                    frequency: index > n / 2 ? index - n : index,
+                    amplitude: (math.abs(value) as unknown as number) / n,
+                    phase: math.arg(value), // Phase in radians
+                }),
+            );
         }
 
         function setOrigin(): void {
