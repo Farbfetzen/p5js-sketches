@@ -54,16 +54,16 @@ export class EpicyclesComponent {
         { label: "Triangle", filename: "triangle.txt" },
     ];
     selectedShape = "heart.txt";
+    showCircles = true;
+    fadeLine = false;
+    // Angular velocity in radians per second.
+    angularVelocity = 1;
 
     createSketch = (p: p5): void => {
-        let fadeLine = false;
-        let showCircles = true;
         const canvasWidth = 800;
         const canvasHeight = 800;
         // A number > 0 and <= 1 indicating how much of the width and height of the window the shape should occupy.
         const scaleFactor = 0.8;
-        // Angular velocity in radians per second.
-        let angularVelocity = 1;
         const minAngularVelocity = 1 / 32;
         const maxAngularVelocity = 4;
         // Interpolate if points are farther apart than this.
@@ -263,9 +263,9 @@ export class EpicyclesComponent {
             // When saving a gif: Replace the following line with this:
             // currentAngle += TWO_PI / frames
             // With "frames" being the number of frames the gif is recording. More frames means slower animation.
-            currentAngle += angularVelocity * dt;
+            currentAngle += this.angularVelocity * dt;
             const previousPoint = points[points.length - 1];
-            const currentPoint = getEpicyclesAtAngle(currentAngle, showCircles);
+            const currentPoint = getEpicyclesAtAngle(currentAngle, this.showCircles);
             const distance = previousPoint.dist(currentPoint);
             if (distance > maxDistance) {
                 const [interpolatedPoints, interpolatedAngles] = interpolate(
@@ -285,7 +285,7 @@ export class EpicyclesComponent {
             trimArrays();
 
             p.strokeWeight(2);
-            if (fadeLine) {
+            if (this.fadeLine) {
                 for (let i = 0; i < points.length - 1; i++) {
                     const angle = angles[i];
                     const from = points[i];
@@ -310,14 +310,14 @@ export class EpicyclesComponent {
                 } else {
                     p.loop();
                 }
-            } else if (p.key === "+" && angularVelocity < maxAngularVelocity) {
-                angularVelocity *= 2;
-            } else if (p.key == "-" && angularVelocity > minAngularVelocity) {
-                angularVelocity /= 2;
+            } else if (p.key === "+" && this.angularVelocity < maxAngularVelocity) {
+                this.angularVelocity *= 2;
+            } else if (p.key == "-" && this.angularVelocity > minAngularVelocity) {
+                this.angularVelocity /= 2;
             } else if (p.key === "f") {
-                fadeLine = !fadeLine;
+                this.fadeLine = !this.fadeLine;
             } else if (p.key === "c") {
-                showCircles = !showCircles;
+                this.showCircles = !this.showCircles;
             } else if (p.key === "d") {
                 // debug info
                 // eslint-disable-next-line no-console
@@ -325,7 +325,7 @@ export class EpicyclesComponent {
                     `currentAngle: ${currentAngle}` +
                         `\npoints: ${points.length}` +
                         `\nangles: ${angles.length}` +
-                        `\nspeed: ${angularVelocity}`,
+                        `\nspeed: ${this.angularVelocity}`,
                 );
             }
         };
