@@ -67,7 +67,6 @@ app-root {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
-        color: var(--primary-color);
 
         .p-dropdown {
             width: 15rem;
@@ -79,7 +78,6 @@ app-root {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
-        color: var(--primary-color);
 
         label {
             margin-left: 10px;
