@@ -33,7 +33,7 @@ import { ThemeService } from "src/app/theme/theme.service";
             <p-button
                 [outlined]="true"
                 [rounded]="true"
-                (onClick)="refreshService.refreshButtonTriggered($event)"
+                (onClick)="refreshService.refreshButtonTriggered()"
                 icon="pi pi-refresh"
             />
         }

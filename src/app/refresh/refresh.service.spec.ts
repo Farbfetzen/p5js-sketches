@@ -16,14 +16,13 @@ describe("RefreshService", () => {
 
     it("should subscribe, trigger, and unsubscribe with one subscription", () => {
         const refreshSpy = jasmine.createSpy("RefreshSpy");
-        const event = {} as Event;
         expect(service.isObserved()).toBeFalse();
 
         const subscription = service.subscribe(refreshSpy);
         expect(service.isObserved()).toBeTrue();
 
-        service.refreshButtonTriggered(event);
-        expect(refreshSpy).toHaveBeenCalledOnceWith(event);
+        service.refreshButtonTriggered();
+        expect(refreshSpy).toHaveBeenCalledTimes(1);
 
         subscription.unsubscribe();
         expect(service.isObserved()).toBeFalse();
@@ -32,7 +31,6 @@ describe("RefreshService", () => {
     it("should subscribe, trigger, and unsubscribe with two subscriptions", () => {
         const refreshSpy1 = jasmine.createSpy("RefreshSpy1");
         const refreshSpy2 = jasmine.createSpy("RefreshSpy2");
-        const event = {} as Event;
         expect(service.isObserved()).toBeFalse();
 
         const subscription1 = service.subscribe(refreshSpy1);
@@ -40,9 +38,9 @@ describe("RefreshService", () => {
         const subscription2 = service.subscribe(refreshSpy2);
         expect(service.isObserved()).toBeTrue();
 
-        service.refreshButtonTriggered(event);
-        expect(refreshSpy1).toHaveBeenCalledOnceWith(event);
-        expect(refreshSpy2).toHaveBeenCalledOnceWith(event);
+        service.refreshButtonTriggered();
+        expect(refreshSpy1).toHaveBeenCalledTimes(1);
+        expect(refreshSpy2).toHaveBeenCalledTimes(1);
 
         subscription1.unsubscribe();
         expect(service.isObserved()).toBeTrue();
