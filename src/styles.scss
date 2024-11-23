@@ -63,6 +63,17 @@ app-root {
         right: 1rem;
     }
 
+    .dropdown-with-label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        color: var(--primary-color);
+
+        .p-dropdown {
+            width: 15rem;
+        }
+    }
+
     .slider-with-label {
         width: 100%;
         display: flex;

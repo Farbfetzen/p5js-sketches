@@ -1,8 +1,11 @@
 import * as math from "mathjs";
 import p5 from "p5";
+import { DropdownModule } from "primeng/dropdown";
 
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
+import { RefreshService } from "src/app/refresh/refresh.service";
 import { SketchComponent } from "src/app/sketch/sketch.component";
 
 /*
@@ -15,18 +18,44 @@ References:
 - ["Epicycles, complex Fourier series and Homer Simpson's orbit"](https://www.youtube.com/watch?v=qS4H6PEcCCA) by [Mathologer](https://www.youtube.com/@Mathologer)
 */
 
+/*
+TODO: Add buttons that to the same as the keybindings (except d).
+*/
+
 @Component({
     selector: "app-epicycles",
     standalone: true,
-    imports: [SketchComponent],
-    template: `<app-sketch [sketchFun]="createSketch" />`,
+    imports: [SketchComponent, DropdownModule, FormsModule],
+    template: `
+        <app-sketch [sketchFun]="createSketch" />
+
+        <div class="menu-overlay overlay-right">
+            <div class="dropdown-with-label">
+                <label for="shape-select">Select a shape</label>
+                <p-dropdown
+                    [(ngModel)]="selectedShape"
+                    [options]="shapes"
+                    (onChange)="refreshService.refreshButtonTriggered()"
+                    inputId="shape-select"
+                    optionLabel="label"
+                    optionValue="filename"
+                />
+            </div>
+        </div>
+    `,
 })
 export class EpicyclesComponent {
-    createSketch = (p: p5): void => {
-        // TODO: Add a selectbox for selecting a shape.
-        // TODO: Add buttons that to the same as the keybindings.
+    refreshService = inject(RefreshService);
+    shapes = [
+        { label: "Closed Hilbert Curve", filename: "closed_hilbert.txt" },
+        { label: "H", filename: "H.txt" },
+        { label: "Heart", filename: "heart.txt" },
+        { label: "Star", filename: "star.txt" },
+        { label: "Triangle", filename: "triangle.txt" },
+    ];
+    selectedShape = "heart.txt";
 
-        const filename = "epicycle-shapes/heart.txt";
+    createSketch = (p: p5): void => {
         let fadeLine = false;
         let showCircles = true;
         const canvasWidth = 800;
@@ -205,7 +234,7 @@ export class EpicyclesComponent {
         }
 
         p.preload = (): void => {
-            p.loadStrings(filename, loadPath);
+            p.loadStrings(`epicycle-shapes/${this.selectedShape}`, loadPath);
         };
 
         p.setup = (): void => {
