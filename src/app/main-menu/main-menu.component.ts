@@ -17,7 +17,7 @@ import { ThemeService } from "src/app/theme/theme.service";
             [rounded]="true"
             icon="pi pi-home"
             pButton
-            pTooltip="Home"
+            pTooltip="Go to overview"
             routerLink="/"
             showDelay="500"
             aria-label="Home"
@@ -28,6 +28,8 @@ import { ThemeService } from "src/app/theme/theme.service";
             [rounded]="true"
             (onClick)="themeService.switchTheme()"
             ariaLabel="Switch theme"
+            pTooltip="Switch to {{ themeService.isLightTheme() ? 'dark' : 'light' }} theme"
+            showDelay="500"
         />
         @if (refreshService.isObserved()) {
             <p-button
@@ -35,6 +37,8 @@ import { ThemeService } from "src/app/theme/theme.service";
                 [rounded]="true"
                 (onClick)="refreshService.refreshButtonTriggered()"
                 icon="pi pi-refresh"
+                pTooltip="Refresh the sketch"
+                showDelay="500"
             />
         }
     `,
