@@ -1,6 +1,6 @@
 import p5 from "p5";
 
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from "@angular/core";
+import { Component, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
 
 import { RefreshService } from "src/app/refresh/refresh.service";
 
@@ -9,7 +9,7 @@ import { RefreshService } from "src/app/refresh/refresh.service";
     standalone: true,
     template: ``,
 })
-export class SketchComponent implements AfterViewInit, OnDestroy {
+export class SketchComponent implements OnInit, OnDestroy {
     /** A function that creates a sketch. */
     @Input({ required: true }) sketchFun!: (p: p5) => void;
 
@@ -23,7 +23,7 @@ export class SketchComponent implements AfterViewInit, OnDestroy {
         this.refreshButtonSubscription = this.refreshService.subscribe(() => this.refresh());
     }
 
-    ngAfterViewInit(): void {
+    ngOnInit(): void {
         this.sketch = new p5(this.sketchFun, this.hostElement.nativeElement);
         this.resetNoise();
     }

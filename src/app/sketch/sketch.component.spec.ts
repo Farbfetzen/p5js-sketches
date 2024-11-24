@@ -29,10 +29,10 @@ describe("SketchComponent", () => {
         expect(refreshService.isObserved()).toBeFalse();
     });
 
-    it(`should reset the noise seed in ngAfterViewInit`, () => {
+    it(`should reset the noise seed in ngOnInit`, () => {
         const sketch = new p5(component.sketchFun);
         const initialValue = sketch.noise(0);
-        component.ngAfterViewInit();
+        component.ngOnInit();
         expect(sketch.noise(0)).not.toEqual(initialValue);
     });
 
