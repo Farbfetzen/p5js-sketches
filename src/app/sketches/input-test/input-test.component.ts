@@ -46,7 +46,7 @@ Method 3: Bind the input value to a variable using ngModel and check that variab
             <p-button id="fill-inverter" [outlined]="true" [rounded]="true" label="invert fill color" />
 
             <!-- Method 3 -->
-            <div class="slider-with-label">
+            <div>
                 <label for="circle-resizer">Diameter: {{ diameter }}px</label>
                 <p-slider id="circle-resizer" [(ngModel)]="diameter" max="200" min="10" />
             </div>

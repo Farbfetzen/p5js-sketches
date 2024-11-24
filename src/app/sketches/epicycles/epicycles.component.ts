@@ -30,7 +30,7 @@ TODO: Add buttons that to the same as the keybindings (except d).
         <app-sketch [sketchFun]="createSketch" />
 
         <div class="menu-overlay overlay-right">
-            <div class="dropdown-with-label">
+            <div>
                 <label for="shape-select">Select a shape</label>
                 <p-dropdown
                     [(ngModel)]="selectedShape"

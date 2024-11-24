@@ -63,23 +63,19 @@ app-root {
         right: 1rem;
     }
 
-    .dropdown-with-label {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-
-        .p-dropdown {
-            width: 15rem;
-        }
+    .p-dropdown,
+    .p-slider {
+        width: 15rem;
+        min-width: 100%;
     }
 
-    .slider-with-label {
+    div:has(> label + p-slider, > label + p-dropdown) {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
 
-        label {
+        label:has(+ p-slider) {
             margin-left: 10px;
         }
     }

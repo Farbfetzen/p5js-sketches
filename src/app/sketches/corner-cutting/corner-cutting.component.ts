@@ -25,20 +25,15 @@ TODO:
         <app-sketch [sketchFun]="createSketch" />
 
         <div class="menu-overlay overlay-right">
-            <div class="slider-with-label">
+            <div>
                 <label for="ratio">Ratio: {{ ratio }}</label>
                 <p-slider id="ratio" [(ngModel)]="ratio" max="1.5" min="-1" step="0.1" />
             </div>
-            <div class="slider-with-label">
+            <div>
                 <label for="iterations">Iterations: {{ iterations }}</label>
                 <p-slider id="iterations" [(ngModel)]="iterations" max="5" min="0" />
             </div>
         </div>
-    `,
-    styles: `
-        .slider-with-label {
-            width: 15rem;
-        }
     `,
 })
 export class CornerCuttingComponent {
