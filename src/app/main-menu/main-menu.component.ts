@@ -23,11 +23,11 @@ import { ThemeService } from "src/app/theme/theme.service";
             aria-label="Home"
         ></a>
         <p-button
-            [icon]="'pi ' + (themeService.isLightTheme() ? 'pi-sun' : 'pi-moon')"
             [outlined]="true"
             [rounded]="true"
             (onClick)="themeService.switchTheme()"
             ariaLabel="Switch theme"
+            icon="pi {{ themeService.isLightTheme() ? 'pi-sun' : 'pi-moon' }}"
             pTooltip="Switch to {{ themeService.isLightTheme() ? 'dark' : 'light' }} theme"
             showDelay="500"
         />
