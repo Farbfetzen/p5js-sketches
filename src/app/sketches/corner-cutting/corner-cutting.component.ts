@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { SliderModule } from "primeng/slider";
 
-import { Component, ViewChild } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { SketchComponent } from "src/app/sketch/sketch.component";
@@ -37,7 +37,6 @@ TODO:
     `,
 })
 export class CornerCuttingComponent {
-    @ViewChild(SketchComponent) sketchComponent!: SketchComponent;
     ratio = 0.2;
     iterations = 3;
 
