@@ -31,7 +31,8 @@ TODO:
             </div>
             <div>
                 <label for="iterations">Iterations: {{ iterations }}</label>
-                <p-slider id="iterations" [(ngModel)]="iterations" [max]="5" [min]="0" />
+                <!-- [step]="1" is the default but the slider handle feels jumpy without it. -->
+                <p-slider id="iterations" [(ngModel)]="iterations" [max]="5" [min]="0" [step]="1" />
             </div>
         </div>
     `,
