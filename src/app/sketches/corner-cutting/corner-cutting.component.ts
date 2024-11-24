@@ -27,11 +27,11 @@ TODO:
         <div class="menu-overlay overlay-right">
             <div>
                 <label for="ratio">Ratio: {{ ratio }}</label>
-                <p-slider id="ratio" [(ngModel)]="ratio" max="1.5" min="-1" step="0.1" />
+                <p-slider id="ratio" [(ngModel)]="ratio" [max]="1.5" [min]="-1" [step]="0.1" />
             </div>
             <div>
                 <label for="iterations">Iterations: {{ iterations }}</label>
-                <p-slider id="iterations" [(ngModel)]="iterations" max="5" min="0" />
+                <p-slider id="iterations" [(ngModel)]="iterations" [max]="5" [min]="0" />
             </div>
         </div>
     `,

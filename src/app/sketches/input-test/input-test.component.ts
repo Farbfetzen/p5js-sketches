@@ -48,7 +48,7 @@ Method 3: Bind the input value to a variable using ngModel and check that variab
             <!-- Method 3 -->
             <div>
                 <label for="circle-resizer">Diameter: {{ diameter }}px</label>
-                <p-slider id="circle-resizer" [(ngModel)]="diameter" max="200" min="10" />
+                <p-slider id="circle-resizer" [(ngModel)]="diameter" [max]="200" [min]="10" />
             </div>
         </div>
     `,
