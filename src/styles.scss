@@ -79,6 +79,18 @@ app-root {
             margin-left: 10px;
         }
     }
+
+    div:has(> p-inputswitch + label) {
+        width: 100%;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        .p-inputswitch {
+            // Without this there would be a small margin below the switch.
+            display: block;
+        }
+    }
 }
 
 canvas {

@@ -1,8 +1,11 @@
 import * as math from "mathjs";
 import p5 from "p5";
+import { ButtonModule } from "primeng/button";
 import { DropdownModule } from "primeng/dropdown";
+import { InputSwitchModule } from "primeng/inputswitch";
+import { SliderModule } from "primeng/slider";
 
-import { Component, inject } from "@angular/core";
+import { Component, inject, viewChild } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { RefreshService } from "src/app/refresh/refresh.service";
@@ -19,13 +22,13 @@ References:
 */
 
 /*
-TODO: Add buttons that to the same as the keybindings (except d).
+TODO: Add color pickers for the colors of the line, circles and background.
 */
 
 @Component({
     selector: "app-epicycles",
     standalone: true,
-    imports: [SketchComponent, DropdownModule, FormsModule],
+    imports: [SketchComponent, DropdownModule, FormsModule, InputSwitchModule, SliderModule, ButtonModule],
     template: `
         <app-sketch [sketchFun]="createSketch" />
 
@@ -41,6 +44,27 @@ TODO: Add buttons that to the same as the keybindings (except d).
                     optionValue="filename"
                 />
             </div>
+            <div>
+                <p-inputSwitch [(ngModel)]="showCircles" (onChange)="redrawIfNotRunning()" inputId="show-circles" />
+                <label for="show-circles">Show the circles [c]</label>
+            </div>
+            <div>
+                <p-inputSwitch [(ngModel)]="fadeLine" (onChange)="redrawIfNotRunning()" inputId="fade-line" />
+                <label for="fade-line">Fade the line [f]</label>
+            </div>
+            <div>
+                <label for="angular-velocity"
+                    >Angular velocity: {{ velocities[velocityIndex].label }} rad/s [+/-]</label
+                >
+                <!-- [step]="1" is the default but the slider handle feels jumpy without it. -->
+                <p-slider [(ngModel)]="velocityIndex" [max]="velocities.length - 1" [step]="1" />
+            </div>
+            <p-button
+                [label]="isRunning ? 'Pause' : 'Play'"
+                [rounded]="true"
+                (onClick)="toggleRunning()"
+                icon="pi {{ isRunning ? 'pi-pause' : 'pi-play' }}"
+            />
         </div>
     `,
 })
@@ -57,15 +81,40 @@ export class EpicyclesComponent {
     showCircles = true;
     fadeLine = false;
     // Angular velocity in radians per second.
-    angularVelocity = 1;
+    velocityIndex = 5;
+    velocities = [
+        { label: "1/32", value: 1 / 32 },
+        { label: "1/16", value: 1 / 16 },
+        { label: "1/8", value: 1 / 8 },
+        { label: "1/4", value: 1 / 4 },
+        { label: "1/2", value: 1 / 2 },
+        { label: "1", value: 1 },
+        { label: "2", value: 2 },
+        { label: "4", value: 4 },
+    ];
+    sketchComponent = viewChild.required(SketchComponent);
+    isRunning = true;
+
+    toggleRunning(): void {
+        this.isRunning = !this.isRunning;
+        if (this.isRunning) {
+            this.sketchComponent().sketch.loop();
+        } else {
+            this.sketchComponent().sketch.noLoop();
+        }
+    }
+
+    redrawIfNotRunning(): void {
+        if (!this.isRunning) {
+            this.sketchComponent().sketch.redraw();
+        }
+    }
 
     createSketch = (p: p5): void => {
         const canvasWidth = 800;
         const canvasHeight = 800;
         // A number > 0 and <= 1 indicating how much of the width and height of the window the shape should occupy.
         const scaleFactor = 0.8;
-        const minAngularVelocity = 1 / 32;
-        const maxAngularVelocity = 4;
         // Interpolate if points are farther apart than this.
         const maxDistance = 5;
         // Skip point if distance to previous point is smaller than this to avoid creating unnecessary points.
@@ -251,19 +300,24 @@ export class EpicyclesComponent {
             const firstPoint = getEpicyclesAtAngle(currentAngle, false);
             points.push(firstPoint);
             angles.push(currentAngle);
+            if (!this.isRunning) {
+                p.noLoop();
+            }
         };
 
         p.draw = (): void => {
-            // Limit dt because deltaTime increases even when isLooping() is false.
-            const dt = p.min(p.deltaTime, maxDeltaTime) / 1000;
-
             p.background(backgroundColor);
 
             const previousAngle = currentAngle;
-            // When saving a gif: Replace the following line with this:
-            // currentAngle += TWO_PI / frames
-            // With "frames" being the number of frames the gif is recording. More frames means slower animation.
-            currentAngle += this.angularVelocity * dt;
+            // Conditional on p.isLooping() so p.redraw() doesn't advance the angle when paused.
+            if (p.isLooping()) {
+                // Limit dt because deltaTime increases even when isLooping() is false.
+                const dt = p.min(p.deltaTime, maxDeltaTime) / 1000;
+                // When saving a gif: Replace the following line with this:
+                // currentAngle += TWO_PI / frames
+                // With "frames" being the number of frames the gif is recording. More frames means slower animation.
+                currentAngle += this.velocities[this.velocityIndex].value * dt;
+            }
             const previousPoint = points[points.length - 1];
             const currentPoint = getEpicyclesAtAngle(currentAngle, this.showCircles);
             const distance = previousPoint.dist(currentPoint);
@@ -305,19 +359,21 @@ export class EpicyclesComponent {
 
         p.keyPressed = (): void => {
             if (p.key === " ") {
-                if (p.isLooping()) {
-                    p.noLoop();
-                } else {
-                    p.loop();
-                }
-            } else if (p.key === "+" && this.angularVelocity < maxAngularVelocity) {
-                this.angularVelocity *= 2;
-            } else if (p.key == "-" && this.angularVelocity > minAngularVelocity) {
-                this.angularVelocity /= 2;
+                this.toggleRunning();
+            } else if (p.key === "+") {
+                this.velocityIndex = Math.min(this.velocities.length - 1, this.velocityIndex + 1);
+            } else if (p.key == "-") {
+                this.velocityIndex = Math.max(0, this.velocityIndex - 1);
             } else if (p.key === "f") {
                 this.fadeLine = !this.fadeLine;
+                if (!p.isLooping()) {
+                    p.redraw();
+                }
             } else if (p.key === "c") {
                 this.showCircles = !this.showCircles;
+                if (!p.isLooping()) {
+                    p.redraw();
+                }
             } else if (p.key === "d") {
                 // debug info
                 // eslint-disable-next-line no-console
@@ -325,7 +381,7 @@ export class EpicyclesComponent {
                     `currentAngle: ${currentAngle}` +
                         `\npoints: ${points.length}` +
                         `\nangles: ${angles.length}` +
-                        `\nspeed: ${this.angularVelocity}`,
+                        `\nspeed: ${this.velocities[this.velocityIndex].value}`,
                 );
             }
         };
