@@ -14,6 +14,7 @@ import { Noise1dComponent } from "src/app/sketches/noise1d/noise1d.component";
 import { Noise2dHslComponent } from "src/app/sketches/noise2d-hsl/noise2d-hsl.component";
 import { Noise2dComponent } from "src/app/sketches/noise2d/noise2d.component";
 import { PerlinNoiseFlowFieldComponent } from "src/app/sketches/perlin-noise-flow-field/perlin-noise-flow-field.component";
+import { TouchingCirclesComponent } from "src/app/sketches/touching-circles/touching-circles.component";
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -37,6 +38,7 @@ export const routes: Routes = [
                 component: PerlinNoiseFlowFieldComponent,
                 title: "Perlin Noise Flow Field",
             },
+            { path: "touching-circles", component: TouchingCirclesComponent, title: "Touching Circles" },
         ],
     },
 ];

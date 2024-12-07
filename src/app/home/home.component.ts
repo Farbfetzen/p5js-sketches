@@ -16,6 +16,11 @@ interface SketchPanel {
 export class HomeComponent {
     readonly sketchPanels: SketchPanel[] = [
         {
+            link: "touching-circles",
+            linkText: "Touching Circles",
+            description: "Some circles that are touching.",
+        },
+        {
             link: "input-test",
             linkText: "Input Test",
             description: "Testing ways to manipulate a sketch using separately defined input elements.",
